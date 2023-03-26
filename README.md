@@ -1,4 +1,4 @@
-## Overview
+# Overview
 
 This README file explains The Collab Lab’s smart shopping list project and provides instructions for developing it locally.
 
@@ -16,10 +16,8 @@ As a user, you will enter items (e.g., “Greek yogurt” or “Paper towels”)
 
 The app will work in many of the same ways as [iNeedToBuy.xyz](https://app.ineedtobuy.xyz/) (on which our project is based) with the exception that we will not be implementing barcode scanning (that feature would add a lot of scope to the project and wasn’t all that useful).
 
-📺&nbsp; Check out a video demo of the example app here:
-[![](https://cdn.zappy.app/33815167c45d74c3ae5af232de633add.png)](https://www.youtube.com/watch?v=mwj74mE9s64&t)
-
-<hr>
+:tv: Check out a video demo of the example app here:
+[![TCL Demo Video Screenshot](_resources/images/TCLDemoVideoPic.png)](https://www.youtube.com/watch?v=mwj74mE9s64)
 
 ## Set up the project
 
@@ -27,7 +25,7 @@ The app will work in many of the same ways as [iNeedToBuy.xyz](https://app.ineed
 
 `npm` is distributed with Node.js, which means that when you download Node.js, you automatically get `npm` installed on your computer. You can install Node by [downloading it from the Node.js website](https://nodejs.org/en/) or using a Node version manager like [nvm](https://github.com/nvm-sh/nvm) on a macOS or Linux device or [nvm-windows](https://github.com/coreybutler/nvm-windows) on a Windows device.
 
-💡 **Note:** This project requires the latest Long Term Support (LTS) version of Node. If you have an earlier version of Node, now would be a great time to upgrade!
+:bulb: **Note:** This project requires the latest Long Term Support (LTS) version of Node. If you have an earlier version of Node, now would be a great time to upgrade!
 
 ### Clone the project locally
 
@@ -56,7 +54,7 @@ Once you’ve cloned the project locally and you’re in the project directory, 
 After you’ve cloned the project locally and updated the dependencies, run the project by typing the following into your terminal: `npm start`. You should be able to see the project at `localhost:3000`.
 ![screenshot of the react project](_resources/images/04_local_dev_landing_page.jpg)
 
-🎉 You did it! You’re ready to start contributing!
+:tada: You did it! You’re ready to start contributing!
 
 ## Make your first contribution
 

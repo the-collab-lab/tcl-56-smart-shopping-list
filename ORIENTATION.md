@@ -8,7 +8,7 @@ The goal of this project is to work together to build a “smart” shopping lis
 
 Every team builds their app from the same set of instructions, but each comes out a little different, reflecting the personality of the group.
 
-:tv: &nbsp; Check out a video demo of the app team #6 made here:
+:tv: Check out a video demo of the app team #6 made here:
 [![TCL Demo Video Screenshot](_resources/images/TCLDemoReadmePic.png)](https://youtu.be/uWgkwY_VBPo)
 
 ## Who am I working with?
