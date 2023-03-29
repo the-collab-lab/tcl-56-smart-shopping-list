@@ -1,9 +1,9 @@
 name: update-deps
-on: create
+on: [create, workflow_dispatch]
 jobs:
   npm-update:
     if: github.ref == 'refs/heads/main'
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
