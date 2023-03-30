@@ -8,6 +8,8 @@ Add yourself as a contributor to this project as a Markdown link that links your
 
 ## Cohort Participants
 
+- [Yire Morlans](https://github.com/yiremorlans) 🪴
+
 ## Mentors
 
 - [Aditya Dalal](https://github.com/adidalal) 📚
