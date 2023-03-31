@@ -8,6 +8,8 @@ Add yourself as a contributor to this project as a Markdown link that links your
 
 ## Cohort Participants
 
+- [Drake Nguyen](https://github.com/drakenguyen4000)
+
 ## Mentors
 
 - [Aditya Dalal](https://github.com/adidalal) 📚
