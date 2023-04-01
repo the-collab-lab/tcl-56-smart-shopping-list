@@ -11,6 +11,8 @@ Add yourself as a contributor to this project as a Markdown link that links your
 - [Yire Morlans](https://github.com/yiremorlans) 🪴
 - [Drake Nguyen](https://github.com/drakenguyen4000)
 
+- [Ashley Valentine](https://github.com/fakehouseplant) 🌚
+
 ## Mentors
 
 - [Aditya Dalal](https://github.com/adidalal) 📚
