@@ -12,6 +12,7 @@ Add yourself as a contributor to this project as a Markdown link that links your
 - [Drake Nguyen](https://github.com/drakenguyen4000)
 
 - [Ashley Valentine](https://github.com/fakehouseplant) 🌚
+- [Annemarie Lucernoni] (https://github.com/alucernoni)
 
 ## Mentors
 
