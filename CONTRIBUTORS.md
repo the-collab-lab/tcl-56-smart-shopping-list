@@ -1,21 +1,16 @@
 # The Collab Lab
 
-Add yourself as a contributor to this project as a Markdown link that links your name to your GitHub profile and shows your favorite emoji. Example:
-
-```markdown
-- [Dione Developer](https://github.com/DioneDeveloper) 💅
-```
-
 ## Cohort Participants
 
 - [Yire Morlans](https://github.com/yiremorlans) 🪴
 - [Drake Nguyen](https://github.com/drakenguyen4000)
-
 - [Ashley Valentine](https://github.com/fakehouseplant) 🌚
-- [Annemarie Lucernoni] (https://github.com/alucernoni)
+- [Annemarie Lucernoni](https://github.com/alucernoni)
 
 ## Mentors
 
 - [Aditya Dalal](https://github.com/adidalal) 📚
+- [Michaela Rochon](https://github.com/mich-ro)
+- [Nicole Schnurr](https://github.com/DwightTheShark)
 
 ## Code of Conduct Contacts
