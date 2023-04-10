@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
 import { AddItem, Home, Layout, List } from './views';
+import { generateToken } from '@the-collab-lab/shopping-list-utils';
 
 import { getItemData, streamListItems } from './api';
 import { useStateWithStorage } from './utils';
@@ -19,7 +19,7 @@ export function App() {
 	 * to create and join a new list.
 	 */
 	const [listToken, setListToken] = useStateWithStorage(
-		'my test list',
+		null,
 		'tcl-shopping-list-token',
 	);
 
