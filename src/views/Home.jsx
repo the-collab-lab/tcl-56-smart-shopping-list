@@ -1,12 +1,15 @@
+import { useEffect } from 'react';
 import './Home.css';
 import { useNavigate } from 'react-router-dom';
 
 export function Home({ handleClick, token }) {
 	const navigate = useNavigate();
 
-	if (token) {
-		navigate('/list');
-	}
+	useEffect(() => {
+		if (token) {
+			navigate('/list');
+		}
+	});
 
 	return (
 		<div className="Home">
