@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {
+	BrowserRouter as Router,
+	Routes,
+	Route,
+	useNavigate,
+} from 'react-router-dom';
 import { AddItem, Home, Layout, List } from './views';
 import { generateToken } from '@the-collab-lab/shopping-list-utils';
 
@@ -33,6 +38,19 @@ export function App() {
 
 	//redirect to List view
 
+	const handleClick = () => {
+		if (!listToken) {
+			const newToken = generateToken();
+			setListToken(newToken);
+		}
+	};
+
+	// const navigate = useNavigate()
+
+	// if (token) {
+	// 	navigate("/list")
+	// }
+
 	useEffect(() => {
 		if (!listToken) return;
 
@@ -62,7 +80,10 @@ export function App() {
 			<Routes>
 				<Route path="/" element={<Layout />}>
 					{/* the home component gets handleClick function passed as prop*/}
-					<Route index element={<Home />} />
+					<Route
+						index
+						element={<Home handleClick={handleClick} token={listToken} />}
+					/>
 					<Route path="/list" element={<List data={data} />} />
 					<Route path="/add-item" element={<AddItem />} />
 				</Route>
