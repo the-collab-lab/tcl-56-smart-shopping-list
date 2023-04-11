@@ -23,6 +23,16 @@ export function App() {
 		'tcl-shopping-list-token',
 	);
 
+	// function that handles the button click in Home to generate new token
+
+	// check if user already has token in localStorage
+
+	// the handleClick function will call generateToken from npm package
+
+	// generate new token and save to localStorage using setListToken
+
+	//redirect to List view
+
 	useEffect(() => {
 		if (!listToken) return;
 
@@ -51,6 +61,7 @@ export function App() {
 		<Router>
 			<Routes>
 				<Route path="/" element={<Layout />}>
+					{/* the home component gets handleClick function passed as prop*/}
 					<Route index element={<Home />} />
 					<Route path="/list" element={<List data={data} />} />
 					<Route path="/add-item" element={<AddItem />} />
