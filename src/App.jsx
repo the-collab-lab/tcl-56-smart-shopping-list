@@ -29,8 +29,12 @@ export function App() {
 	const setList = (token) => {
 		try {
 			setListToken(token);
-			const docToken = addDoc(collection(db, 'tokens'), {
-				token: token,
+			const docToken = addDoc(collection(db, `${token}`), {
+				dateCreated: new Date().toString(),
+				dateLastPurchased: null,
+				dateNextPurchased: null,
+				name: null,
+				totalPurchases: 0,
 			});
 			console.log('Document written with ID: ', docToken.id);
 		} catch (e) {
