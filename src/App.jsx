@@ -26,16 +26,10 @@ export function App() {
 	 * Callback function gets passed as a prop through Home component to retrieve generated token.
 	 * It is then set to localStorage through setListToken and added to the database.
 	 **/
-	const setList = (token) => {
+	const setList = async (token) => {
 		try {
 			setListToken(token);
-			const docToken = addDoc(collection(db, `${token}`), {
-				dateCreated: new Date().toString(),
-				dateLastPurchased: null,
-				dateNextPurchased: null,
-				name: null,
-				totalPurchases: 0,
-			});
+			const docToken = await addDoc(collection(db, `${token}`), {});
 			console.log('Document written with ID: ', docToken.id);
 		} catch (e) {
 			console.error('Error adding document: ', e);
