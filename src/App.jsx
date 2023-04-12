@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from './api/config';
 import { AddItem, Home, Layout, List } from './views';
 import { getItemData, streamListItems } from './api';
 import { useStateWithStorage } from './utils';
@@ -20,9 +22,20 @@ export function App() {
 		null,
 		'tcl-shopping-list-token',
 	);
-
+	/**
+	 * Callback function gets passed as a prop through Home component to retrieve generated token.
+	 * It is then set to localStorage through setListToken and added to the database.
+	 **/
 	const setList = (token) => {
-		setListToken(token);
+		try {
+			setListToken(token);
+			const docToken = addDoc(collection(db, 'tokens'), {
+				token: token,
+			});
+			console.log('Document written with ID: ', docToken.id);
+		} catch (e) {
+			console.error('Error adding document: ', e);
+		}
 	};
 
 	useEffect(() => {
