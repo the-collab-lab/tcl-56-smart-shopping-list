@@ -8,7 +8,6 @@ export function AddItem({ listId }) {
 	};
 	const onFormSubmit = (e) => {
 		e.preventDefault();
-		// console.log("state:", radioValue)
 		const itemName = e.target[0].value;
 		const daysUntilNextPurchase = parseInt(radioValue);
 
