@@ -1,13 +1,6 @@
 import { useEffect, useState } from 'react';
-import {
-	BrowserRouter as Router,
-	Routes,
-	Route,
-	useNavigate,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AddItem, Home, Layout, List } from './views';
-import { generateToken } from '@the-collab-lab/shopping-list-utils';
-
 import { getItemData, streamListItems } from './api';
 import { useStateWithStorage } from './utils';
 
@@ -28,28 +21,9 @@ export function App() {
 		'tcl-shopping-list-token',
 	);
 
-	// function that handles the button click in Home to generate new token
-
-	// check if user already has token in localStorage
-
-	// the handleClick function will call generateToken from npm package
-
-	// generate new token and save to localStorage using setListToken
-
-	//redirect to List view
-
-	const handleClick = () => {
-		if (!listToken) {
-			const newToken = generateToken();
-			setListToken(newToken);
-		}
+	const setList = (token) => {
+		setListToken(token);
 	};
-
-	// const navigate = useNavigate()
-
-	// if (token) {
-	// 	navigate("/list")
-	// }
 
 	useEffect(() => {
 		if (!listToken) return;
@@ -79,10 +53,15 @@ export function App() {
 		<Router>
 			<Routes>
 				<Route path="/" element={<Layout />}>
-					{/* the home component gets handleClick function passed as prop*/}
 					<Route
 						index
-						element={<Home handleClick={handleClick} token={listToken} />}
+						element={
+							listToken ? (
+								<List data={data} />
+							) : (
+								<Home makeNewList={(token) => setList(token)} />
+							)
+						}
 					/>
 					<Route path="/list" element={<List data={data} />} />
 					<Route path="/add-item" element={<AddItem />} />
