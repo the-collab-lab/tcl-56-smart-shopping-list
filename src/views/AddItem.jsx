@@ -2,29 +2,43 @@ import { useState } from 'react';
 import { addItem } from '../api/firebase';
 
 export function AddItem({ listId }) {
-	const [radioValue, setRadioValue] = useState('');
-	const onOptionChange = (e) => {
-		setRadioValue(e.target.value);
+	const [itemData, setItemData] = useState({
+		itemName: '',
+		daysUntilNextPurchase: null,
+	});
+	const [submitMessage, setSubmitMessage] = useState('');
+
+	const onChange = (e) => {
+		if (e.target.name === 'daysTillNextPurchase') {
+			setItemData((itemData) => ({
+				...itemData,
+				daysUntilNextPurchase: parseInt(e.target.value),
+			}));
+		} else {
+			setItemData((itemData) => ({
+				...itemData,
+				itemName: e.target.value,
+			}));
+		}
 	};
+
 	const onFormSubmit = (e) => {
 		e.preventDefault();
-		const itemName = e.target[0].value;
-		const daysUntilNextPurchase = parseInt(radioValue);
-
-		const itemData = {
-			itemName: itemName,
-			daysUntilNextPurchase: daysUntilNextPurchase,
-		};
-
-		addItem(listId, itemData);
+		try {
+			addItem(listId, itemData);
+			setSubmitMessage('Item successfully added to your list!');
+		} catch (error) {
+			setSubmitMessage('An error occured.');
+		}
 	};
+
 	return (
 		<>
 			<form onSubmit={onFormSubmit}>
 				<div>
 					<label htmlFor="item">Item name:</label>
 				</div>
-				<input type="text" name="item" id="item" />
+				<input type="text" name="item" id="item" onChange={onChange} />
 				<div>
 					<fieldset>
 						<legend>How soon will you buy this agin?</legend>
@@ -35,8 +49,8 @@ export function AddItem({ listId }) {
 									id="soon"
 									name="daysTillNextPurchase"
 									value="7"
-									onChange={onOptionChange}
-									checked={radioValue === '7'}
+									onChange={onChange}
+									checked={itemData.daysUntilNextPurchase === 7}
 								/>
 								Soon
 							</label>
@@ -48,8 +62,8 @@ export function AddItem({ listId }) {
 									id="kindaSoon"
 									name="daysTillNextPurchase"
 									value="14"
-									onChange={onOptionChange}
-									checked={radioValue === '14'}
+									onChange={onChange}
+									checked={itemData.daysUntilNextPurchase === 14}
 								/>
 								Kinda Soon
 							</label>
@@ -61,8 +75,8 @@ export function AddItem({ listId }) {
 									id="notSoon"
 									name="daysTillNextPurchase"
 									value="30"
-									onChange={onOptionChange}
-									checked={radioValue === '30'}
+									onChange={onChange}
+									checked={itemData.daysUntilNextPurchase === 30}
 								/>
 								Not Soon
 							</label>
@@ -71,6 +85,7 @@ export function AddItem({ listId }) {
 				</div>
 				<button type="submit">Add Item</button>
 			</form>
+			<p>{submitMessage}</p>
 		</>
 	);
 }
