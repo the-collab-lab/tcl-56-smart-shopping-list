@@ -4,7 +4,7 @@ import { addItem } from '../api/firebase';
 export function AddItem({ listId }) {
 	const [itemData, setItemData] = useState({
 		itemName: '',
-		daysUntilNextPurchase: null,
+		daysUntilNextPurchase: 7,
 	});
 	const [submitMessage, setSubmitMessage] = useState('');
 
@@ -38,7 +38,13 @@ export function AddItem({ listId }) {
 				<div>
 					<label htmlFor="item">Item name:</label>
 				</div>
-				<input type="text" name="item" id="item" onChange={onChange} />
+				<input
+					type="text"
+					name="item"
+					id="item"
+					value={itemData.itemName}
+					onChange={onChange}
+				/>
 				<div>
 					<fieldset>
 						<legend>How soon will you buy this agin?</legend>
