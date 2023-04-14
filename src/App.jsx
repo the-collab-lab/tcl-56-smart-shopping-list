@@ -23,16 +23,30 @@ export function App() {
 		'tcl-shopping-list-token',
 	);
 	/**
+	 * Here, we're setting the state of an error message that will be displayed to the user incase the Promise is not fulfilled when generating a new list.
+	 **/
+	const [timeOutErrorMsg, setTimeOutErrorMsg] = useState('');
+	/**
 	 * Callback function gets passed as a prop through Home component to retrieve generated token.
-	 * It is then set to localStorage through setListToken and added to the database.
+	 * The addDoc function call is wrapped in a Promise.race() method with a Promise that rejects after a certain timeout period.
+	 * If the Promise times out, the Promise is rejected with an error message to the user, else the Promise is resolved and
+	 * the token is added to the database and set to localStorage through setListToken.
 	 **/
 	const setList = async (token) => {
 		try {
+			const result = await Promise.race([
+				addDoc(collection(db, `${token}`), {}),
+				new Promise((resolve, reject) => {
+					setTimeout(() => {
+						reject(new Error('Promise timed out: Database not responding'));
+					}, 5000);
+				}),
+			]);
 			setListToken(token);
-			const docToken = await addDoc(collection(db, `${token}`), {});
-			console.log('Document written with ID: ', docToken.id);
+			console.log('New list created with ID: ', result.id);
 		} catch (e) {
-			console.error('Error adding document: ', e);
+			console.error('Error adding new list token: ', e);
+			setTimeOutErrorMsg('New List Error. Please refresh or try again later.');
 		}
 	};
 
@@ -70,7 +84,10 @@ export function App() {
 							listToken ? (
 								<List data={data} />
 							) : (
-								<Home makeNewList={(token) => setList(token)} />
+								<Home
+									makeNewList={(token) => setList(token)}
+									handleError={timeOutErrorMsg}
+								/>
 							)
 						}
 					/>
