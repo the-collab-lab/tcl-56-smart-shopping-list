@@ -49,7 +49,12 @@ export function App() {
 			setTimeOutErrorMsg('New List Error. Please refresh or try again later.');
 		}
 	};
-
+	{
+		/**Function that will check listToken state.  
+	  User is redirected to List view.
+	  Else console.log.error(message)
+*/
+	}
 	useEffect(() => {
 		if (!listToken) return;
 
