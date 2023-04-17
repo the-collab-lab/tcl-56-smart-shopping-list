@@ -14,6 +14,12 @@ export function Home({ makeNewList, handleError }) {
 			</p>
 			{handleError ? <span>{handleError}</span> : null}
 			<button onClick={handleClick}>Create a new list!</button>
+			<form>
+				<label htmlFor="input-field"> sharedToken</label>
+				<input type="text" id="input-field" name="user-input" />
+				{/* Will check for listtoken inside of db and Local Storage, will use handleClick function */}
+				<button>Join Existing List</button>
+			</form>
 		</div>
 	);
 }
