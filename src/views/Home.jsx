@@ -32,6 +32,7 @@ export function Home({ makeNewList, joinList, handleError, joinListErrorMsg }) {
 				<form onSubmit={handleJoinList}>
 					<label htmlFor="input">Share token</label>
 					<input
+						name="input"
 						id="input"
 						type="text"
 						value={inputValue}
