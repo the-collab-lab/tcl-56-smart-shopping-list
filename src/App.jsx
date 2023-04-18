@@ -26,6 +26,7 @@ export function App() {
 	 * Here, we're setting the state of an error message that will be displayed to the user incase the Promise is not fulfilled when generating a new list.
 	 **/
 	const [timeOutErrorMsg, setTimeOutErrorMsg] = useState('');
+	const [joinListErrorMsg, setJoinListErrorMsg] = useState('');
 	/**
 	 * Callback function gets passed as a prop through Home component to retrieve generated token.
 	 * The addDoc function call is wrapped in a Promise.race() method with a Promise that rejects after a certain timeout period.
@@ -49,12 +50,43 @@ export function App() {
 			setTimeOutErrorMsg('New List Error. Please refresh or try again later.');
 		}
 	};
-	{
-		/**Function that will check listToken state.  
-	  User is redirected to List view.
-	  Else console.log.error(message)
-*/
-	}
+	/**
+	 * Callback function gets passed as a prop through Home component to retrieve user input.
+	 * A Promise.race() method is used again as with setList to appropriately respond to the user if the database is not responding.
+	 * StreamListItems function takes the user submitted token and returns a snapshot of the items in the database.
+	 * If the collection is not empty, the shared token is set to localStorage.
+	 * Else the user is informed the token that was shared with them is empty or does not exist via setJoinListErrorMsg state that is passed through Home component.
+	 * **/
+	const joinList = async (token) => {
+		try {
+			await Promise.race([
+				streamListItems(token, (snapshot) => {
+					const checkCollection = getItemData(snapshot);
+					const listArr = checkCollection.filter(
+						(item) => item.name !== undefined,
+					);
+					if (listArr.length > 0) {
+						setListToken(token);
+						console.log(`Joined new list created with token: ${token}`);
+					} else {
+						setJoinListErrorMsg(
+							`${token} does not exist or is an empty list. Please refresh or try again later.`,
+						);
+					}
+				}),
+				new Promise((resolve, reject) => {
+					setTimeout(() => {
+						reject(new Error('Promise timed out: Database not responding'));
+					}, 5000);
+				}),
+			]);
+		} catch (e) {
+			console.error('Error joining list token: ', e);
+			setTimeOutErrorMsg(
+				'Join Existing List Error. Please refresh or try again later.',
+			);
+		}
+	};
 	useEffect(() => {
 		if (!listToken) return;
 
@@ -91,7 +123,9 @@ export function App() {
 							) : (
 								<Home
 									makeNewList={(token) => setList(token)}
+									joinList={(token) => joinList(token)}
 									handleError={timeOutErrorMsg}
+									joinListErrorMsg={joinListErrorMsg}
 								/>
 							)
 						}
