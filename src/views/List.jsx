@@ -1,25 +1,46 @@
 import { ListItem } from '../components';
+import { useState } from 'react';
 
 export function List({ data }) {
+	// creates a state variable to track searchbar input
+	const [query, setQuery] = useState('');
+
+	// sets the state to the searchbar input as the user types
+	const handleSearch = (e) => {
+		setQuery(e.target.value);
+	};
+
+	// clears the searchbar and resets the filtered list to the whole list
+	const clearFilter = (e) => {
+		setQuery('');
+	};
+
 	return (
 		<>
 			<p>
 				Hello from the <code>/list</code> page!
 			</p>
-			{/* add a form component with search bar */}
-			{/* includes text field with semantic "label", working properly if focus changes on clicking*/}
-			{/* filter should match any part of item name not just from start of string */}
-			{/* should include clear field button on search bar */}
 			<form>
-				<label for="searchbar">
+				<label htmlFor="searchbar">
 					Filter Items
-					<input type="text" id="searchbar"></input>
+					<input
+						type="text"
+						id="searchbar"
+						onChange={handleSearch}
+						value={query}
+					></input>
 				</label>
+				<button type="button" onClick={clearFilter}>
+					Clear
+				</button>
 			</form>
 			<ul>
-				{data.map((item) => {
-					return <ListItem key={item.id} name={item.name} />;
-				})}
+				{/* filters the list to match the user's query as user types, then maps over the items that match the filter to display them */}
+				{data
+					.filter((item) => item.name.toLowerCase().includes(query))
+					.map((item) => {
+						return <ListItem key={item.id} name={item.name} />;
+					})}
 			</ul>
 		</>
 	);
