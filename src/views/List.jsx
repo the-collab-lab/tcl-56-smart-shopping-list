@@ -37,7 +37,9 @@ export function List({ data }) {
 			<ul>
 				{/* filters the list to match the user's query as user types, then maps over the items that match the filter to display them */}
 				{data
-					.filter((item) => item.name.toLowerCase().includes(query))
+					.filter((item) =>
+						item.name.toLowerCase().includes(query.toLowerCase()),
+					)
 					.map((item) => {
 						return <ListItem key={item.id} name={item.name} />;
 					})}
