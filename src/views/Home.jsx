@@ -37,6 +37,13 @@ export function Home({ makeNewList, joinList, handleError, joinListErrorMsg }) {
 						type="text"
 						value={inputValue}
 						onChange={(event) => setInputValue(event.target.value)}
+						pattern="[a-zA-Z]+ [a-zA-Z]+ [a-zA-Z]+"
+						onInvalid={(e) =>
+							e.target.setCustomValidity(
+								'Please enter 3 words with single space only.',
+							)
+						}
+						onInput={(e) => e.target.setCustomValidity('')}
 						required
 					/>
 					<button type="submit">Join an existing list</button>
