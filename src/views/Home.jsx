@@ -1,10 +1,21 @@
-import './Home.css';
+import { useState } from 'react';
 import { generateToken } from '@the-collab-lab/shopping-list-utils';
+import './Home.css';
 
-export function Home({ makeNewList, handleError }) {
+export function Home({ makeNewList, joinList, handleError, joinListErrorMsg }) {
+	const [inputValue, setInputValue] = useState('');
+
 	const handleClick = () => {
 		const newToken = generateToken();
 		makeNewList(newToken);
+	};
+	/**
+	 * Function handles taking the form input and passing it through joinList callback function after it is validated and sanitized
+	 **/
+	const handleJoinList = (event) => {
+		event.preventDefault();
+		const userInput = inputValue.trim().toLowerCase();
+		joinList(userInput);
 	};
 
 	return (
@@ -14,6 +25,30 @@ export function Home({ makeNewList, handleError }) {
 			</p>
 			{handleError ? <span>{handleError}</span> : null}
 			<button onClick={handleClick}>Create a new list!</button>
+
+			<div className="JoinListForm">
+				<p>Join an existing shopping list by entering a three word token.</p>
+				{joinListErrorMsg ? <span>{joinListErrorMsg}</span> : null}
+				<form onSubmit={handleJoinList}>
+					<label htmlFor="input">Share token</label>
+					<input
+						name="input"
+						id="input"
+						type="text"
+						value={inputValue}
+						onChange={(event) => setInputValue(event.target.value)}
+						pattern="[a-zA-Z]+ [a-zA-Z]+ [a-zA-Z]+"
+						onInvalid={(e) =>
+							e.target.setCustomValidity(
+								'Please enter 3 words with single space only.',
+							)
+						}
+						onInput={(e) => e.target.setCustomValidity('')}
+						required
+					/>
+					<button type="submit">Join an existing list</button>
+				</form>
+			</div>
 		</div>
 	);
 }
