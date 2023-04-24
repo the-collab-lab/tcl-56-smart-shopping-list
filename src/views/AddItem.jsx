@@ -42,6 +42,7 @@ export function AddItem({ listId }) {
 					type="text"
 					name="item"
 					id="item"
+					required
 					value={itemData.itemName}
 					onChange={onChange}
 				/>
