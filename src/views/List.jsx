@@ -1,5 +1,6 @@
 import { ListItem } from '../components';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export function List({ data }) {
 	// creates a state variable to track searchbar input
@@ -15,11 +16,23 @@ export function List({ data }) {
 		setQuery('');
 	};
 
+	const navigate = useNavigate();
+
 	return (
 		<>
+			<p>Welcome to your shopping list!</p>
 			<p>
-				Hello from the <code>/list</code> page!
+				{data.length < 2
+					? 'Your list is empty.  Add an item to get started.'
+					: null}
 			</p>
+			<button
+				onClick={() => {
+					navigate('/add-item');
+				}}
+			>
+				Add Item
+			</button>
 			<form>
 				<label htmlFor="searchbar">
 					Filter Items
