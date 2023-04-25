@@ -1,7 +1,7 @@
 import { ListItem } from '../components';
 import { useState } from 'react';
 
-export function List({ data }) {
+export function List({ data, listId }) {
 	// creates a state variable to track searchbar input
 	const [query, setQuery] = useState('');
 
@@ -41,7 +41,14 @@ export function List({ data }) {
 						item.name?.toLowerCase().includes(query.toLowerCase()),
 					)
 					.map((item) => {
-						return <ListItem key={item.id} name={item.name} />;
+						return (
+							<ListItem
+								key={item.id}
+								name={item.name}
+								itemId={item.id}
+								listId={listId}
+							/>
+						);
 					})}
 			</ul>
 		</>

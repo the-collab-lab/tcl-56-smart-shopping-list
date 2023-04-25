@@ -119,7 +119,7 @@ export function App() {
 						index
 						element={
 							listToken ? (
-								<List data={data} />
+								<List data={data} listId={listToken} />
 							) : (
 								<Home
 									makeNewList={(token) => setList(token)}
@@ -130,7 +130,10 @@ export function App() {
 							)
 						}
 					/>
-					<Route path="/list" element={<List data={data} />} />
+					<Route
+						path="/list"
+						element={<List data={data} listId={listToken} />}
+					/>
 					<Route path="/add-item" element={<AddItem listId={listToken} />} />
 				</Route>
 			</Routes>
