@@ -1,6 +1,8 @@
 import { ListItem } from '../components';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Chippy2 from '/img/Chippy2.gif';
+import './List.css';
 
 export function List({ data }) {
 	// creates a state variable to track searchbar input
@@ -57,6 +59,21 @@ export function List({ data }) {
 						return <ListItem key={item.id} name={item.name} />;
 					})}
 			</ul>
+			<div className="chippy-suggestion chippy-suggestion-bottom-right">
+				{data.length < 2
+					? 'Uh oh! Your shopping list is empty! Try using the "Add Item" button to begin your list!'
+					: 'Yummy! That list is looking good! Did you know that you can use the filter to search within your list?'}{' '}
+			</div>
+			<img
+				style={{
+					height: '150px',
+					position: 'fixed',
+					bottom: '80px',
+					right: '80px',
+				}}
+				src={Chippy2}
+				alt='Helpful potato chip gif named Chippy, à la "Clippy", who suggests that user adds an item to their shopping list '
+			></img>
 		</>
 	);
 }
