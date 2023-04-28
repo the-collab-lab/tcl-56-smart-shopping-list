@@ -41,14 +41,7 @@ export function List({ data, listId }) {
 						item.name?.toLowerCase().includes(query.toLowerCase()),
 					)
 					.map((item) => {
-						return (
-							<ListItem
-								key={item.id}
-								name={item.name}
-								itemId={item.id}
-								listId={listId}
-							/>
-						);
+						return <ListItem key={item.id} item={item} listId={listId} />;
 					})}
 			</ul>
 		</>
