@@ -1,5 +1,12 @@
+#chippy {
+	height: 150px;
+	position: fixed;
+	bottom: 100px;
+	right: 15%;
+}
+
 .chippy-suggestion {
-	position: relative;
+	position: fixed;
 	font-family: sans-serif;
 	font-size: 18px;
 	line-height: 24px;
@@ -9,8 +16,8 @@
 	padding: 24px;
 	text-align: center;
 	color: #fff;
-	bottom: -70px;
-	right: -650px;
+	bottom: 300px;
+	right: 15%;
 }
 
 .chippy-suggestion-bottom-right:before {

@@ -65,12 +65,7 @@ export function List({ data, listId }) {
 					: 'Yummy! That list is looking good! Did you know that you can use the filter to search within your list?'}{' '}
 			</div>
 			<img
-				style={{
-					height: '150px',
-					position: 'fixed',
-					bottom: '80px',
-					right: '80px',
-				}}
+				id="chippy"
 				src={Chippy2}
 				alt='Helpful potato chip gif named Chippy, à la "Clippy", who suggests that user adds an item to their shopping list '
 			></img>
