@@ -4,10 +4,24 @@ import { updateItem } from '../api/firebase';
 
 export function ListItem({ item, listId }) {
 	const [checked, setChecked] = useState(false);
-	const { name, id, dateCreated, dateLastPurchased, totalPurchases } = item;
+	const {
+		name,
+		id,
+		dateCreated,
+		dateLastPurchased,
+		dateNextPurchased,
+		totalPurchases,
+	} = item;
 
 	const checkItem = (e) => {
-		updateItem(listId, id, dateCreated, dateLastPurchased, totalPurchases);
+		updateItem(
+			listId,
+			id,
+			dateCreated,
+			dateLastPurchased,
+			dateNextPurchased,
+			totalPurchases,
+		);
 	};
 	useEffect(() => {
 		if (dateLastPurchased) {

@@ -13,11 +13,17 @@ export function getFutureDate(offset) {
 
 /**
  * presentDate and lastPurchaseDate are required to be two javascript date objects in order for the compare function to work
- * @param {Date} presentDate
- * @param {Date} lastPurchaseDate
+ * @param {Date} originalDate
+ * @param {Date} secondaryDate
  */
-export function getDaysBetweenDates(presentDate, lastPurchaseDate) {
-	let timeDifference = lastPurchaseDate.getTime() - presentDate.getTime();
+export function getDaysBetweenDates(originalDate, secondaryDate) {
+	// function works for pevious estimate but not for daysSinceLastPurchase
+	// will need a conditional for handling a firestore object versus a javascript date object
+
+	originalDate = originalDate.toDate();
+	secondaryDate = secondaryDate.toDate();
+
+	let timeDifference = secondaryDate.getTime() - originalDate.getTime();
 	let totalDays = Math.abs(timeDifference / ONE_DAY_IN_MILLISECONDS);
 	return Math.floor(totalDays);
 }

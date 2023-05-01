@@ -78,18 +78,22 @@ export async function updateItem(
 	itemId,
 	dateCreated,
 	dateLastPurchased,
+	dateNextPurchased,
 	totalPurchases,
 ) {
 	// TODO: logic for performing calculateEstimate and getDaysBetweenDates
 	//previous estimate is getDaysBetweenDates(dateCreated, dateNextPurchassed)
 	//daysSinceLastPurchase is getDaysBetweenDates(dateLastPurchased, new Date())
 	//total purchases is totalPurchases qty
-	console.log(dateCreated, dateLastPurchased, totalPurchases);
+
+	const prevEstimate = getDaysBetweenDates(dateCreated, dateNextPurchased);
+	// const daysSinceLastPurchase = getDaysBetweenDates(dateLastPurchased, new Date())
+	console.log(prevEstimate);
 
 	const itemRef = doc(db, listId, itemId);
 	return await updateDoc(itemRef, {
 		dateLastPurchased: new Date(),
-		dateNextPurchased: calculateEstimate(),
+		// dateNextPurchased: calculateEstimate(),
 		totalPurchases: increment(1),
 	});
 }
