@@ -7,8 +7,8 @@ import {
 	doc,
 } from 'firebase/firestore';
 import { db } from './config';
-import { getFutureDate } from '../utils';
-
+import { getFutureDate, getDaysBetweenDates } from '../utils';
+import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
 /**
  * Subscribe to changes on a specific list in the Firestore database (listId), and run a callback (handleSuccess) every time a change happens.
  * @param {string} listId The user's list token
@@ -73,10 +73,11 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 	});
 }
 
-export async function updateItem(listId, itemId) {
+export async function updateItem(listId, itemId, {}) {
 	const itemRef = doc(db, listId, itemId);
 	return await updateDoc(itemRef, {
 		dateLastPurchased: new Date(),
+		dateNextPurchased: calculateEstimate(),
 		totalPurchases: increment(1),
 	});
 }
