@@ -1,7 +1,7 @@
 import { ListItem } from '../components';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Chippy2 from '/img/Chippy2.gif';
+import Chippy3 from '/img/Chippy3.gif';
 import './List.css';
 
 export function List({ data, listId }) {
@@ -66,7 +66,7 @@ export function List({ data, listId }) {
 			</div>
 			<img
 				id="chippy"
-				src={Chippy2}
+				src={Chippy3}
 				alt='Helpful potato chip gif named Chippy, à la "Clippy", who suggests that user adds an item to their shopping list '
 			></img>
 		</>
