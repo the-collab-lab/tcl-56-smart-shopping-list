@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { addItem } from '../api/firebase';
 
-export function AddItem({ listId }) {
+export function AddItem({ data, listId }) {
 	const [itemData, setItemData] = useState({
 		itemName: '',
 		daysUntilNextPurchase: 7,
@@ -25,8 +25,18 @@ export function AddItem({ listId }) {
 	const onFormSubmit = (e) => {
 		e.preventDefault();
 		try {
-			addItem(listId, itemData);
-			setSubmitMessage('Item successfully added to your list!');
+			const cleanItemName = itemData.itemName
+				.replace(/[\W_]/g, '')
+				.toLowerCase();
+			const duplicateItem = data.find((item) =>
+				item.name?.toLowerCase().includes(cleanItemName),
+			);
+			if (duplicateItem) {
+				setSubmitMessage('Item already exist on your list.');
+			} else {
+				addItem(listId, itemData);
+				setSubmitMessage('Item successfully added to your list!');
+			}
 		} catch (error) {
 			setSubmitMessage('An error occured.');
 		}
