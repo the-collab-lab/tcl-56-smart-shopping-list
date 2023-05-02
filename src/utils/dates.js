@@ -21,3 +21,17 @@ export function getDaysBetweenDates(startDate, endDate) {
 	let totalDays = Math.abs(timeDifference / ONE_DAY_IN_MILLISECONDS);
 	return Math.floor(totalDays);
 }
+
+export function getNextPurchaseDate(estimatedDays) {
+	console.log('estimatedDays', estimatedDays);
+	let today = new Date();
+	console.log('today', today);
+	let getDateOfMonth = today.getDate();
+	console.log('getDateOfMonth', getDateOfMonth);
+	let addedDaystoDate = getDateOfMonth + estimatedDays;
+	console.log('addedDaystoDate', addedDaystoDate);
+	let today2 = today;
+	let nextDate = today2.setDate(addedDaystoDate);
+	console.log('nextDate and today', nextDate, today);
+	return new Date(nextDate);
+}
