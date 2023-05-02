@@ -4,29 +4,15 @@ import { updateItem } from '../api/firebase';
 
 export function ListItem({ item, listId }) {
 	const [checked, setChecked] = useState(false);
-	const {
-		name,
-		id,
-		dateCreated,
-		dateLastPurchased,
-		dateNextPurchased,
-		totalPurchases,
-	} = item;
 
 	const checkItem = (e) => {
-		updateItem(
-			listId,
-			id,
-			dateCreated,
-			dateLastPurchased,
-			dateNextPurchased,
-			totalPurchases,
-		);
+		updateItem(listId, item);
 	};
 	useEffect(() => {
-		if (dateLastPurchased) {
-			const lastPurchasedDate = dateLastPurchased.toDate();
-			const hoursPlus24 = lastPurchasedDate.getHours() + 24;
+		if (item.dateLastPurchased) {
+			const lastPurchasedDate = item.dateLastPurchased.toDate();
+			const twentyFourHrs = 24;
+			const hoursPlus24 = lastPurchasedDate.getHours() + twentyFourHrs;
 
 			const newDate = new Date(lastPurchasedDate.setHours(hoursPlus24));
 
@@ -34,18 +20,18 @@ export function ListItem({ item, listId }) {
 				setChecked(true);
 			}
 		}
-	}, [checked, dateLastPurchased]);
+	}, [checked, item.dateLastPurchased]);
 
 	return (
 		<li className="ListItem">
-			<label htmlFor={id}>
+			<label htmlFor={item.id}>
 				{checked ? (
-					<input type="checkbox" id={id} onChange={checkItem} checked />
+					<input type="checkbox" id={item.id} onChange={checkItem} checked />
 				) : (
-					<input type="checkbox" id={id} onChange={checkItem} />
+					<input type="checkbox" id={item.id} onChange={checkItem} />
 				)}
 
-				{name}
+				{item.name}
 			</label>
 		</li>
 	);
