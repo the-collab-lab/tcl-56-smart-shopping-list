@@ -12,7 +12,7 @@ export function getFutureDate(offset) {
 }
 
 /**
- * presentDate and lastPurchaseDate are required to be two javascript date objects in order for the compare function to work
+ * startDate and endDate are required to be two JavaScript Date objects in order for the compare function to work
  * @param {Date} startDate
  * @param {Date} endDate
  */
@@ -21,17 +21,17 @@ export function getDaysBetweenDates(startDate, endDate) {
 	let totalDays = Math.abs(timeDifference / ONE_DAY_IN_MILLISECONDS);
 	return Math.floor(totalDays);
 }
-
+/**
+ * Receives a whole number of days that is estimated from calculateEstimate function
+ * Grabs the current date from new Date object and adds the number of days to it
+ * Sets a new date and returns it as a JavaScript Date object
+ * @param {number} estimatedDays
+ * @returns {Date}
+ */
 export function getNextPurchaseDate(estimatedDays) {
-	console.log('estimatedDays', estimatedDays);
 	let today = new Date();
-	console.log('today', today);
 	let getDateOfMonth = today.getDate();
-	console.log('getDateOfMonth', getDateOfMonth);
 	let addedDaystoDate = getDateOfMonth + estimatedDays;
-	console.log('addedDaystoDate', addedDaystoDate);
-	let today2 = today;
-	let nextDate = today2.setDate(addedDaystoDate);
-	console.log('nextDate and today', nextDate, today);
+	let nextDate = today.setDate(addedDaystoDate);
 	return new Date(nextDate);
 }
