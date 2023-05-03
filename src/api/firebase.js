@@ -76,7 +76,11 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 		totalPurchases: 0,
 	});
 }
-
+/**
+ * Update an existing item in the user's list in Firestore.
+ * @param {string} listId The id of the list we're adding to.
+ * @param {Object} item Information about the new item.
+ **/
 export async function updateItem(listId, item) {
 	const {
 		id,
@@ -103,11 +107,6 @@ export async function updateItem(listId, item) {
 		daysSinceLastPurchase,
 		totalPurchases,
 	);
-
-	// console.log("previous estimate", prevEstimate)
-	// console.log("estimated next purchase", getNextPurchaseDate(estimatedNextPurchase))
-	console.log('date next purchased', dateNextPurchased);
-
 	const itemRef = doc(db, listId, id);
 	return await updateDoc(itemRef, {
 		dateLastPurchased: new Date(),
