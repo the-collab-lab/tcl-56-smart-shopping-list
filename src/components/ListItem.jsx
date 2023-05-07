@@ -10,7 +10,9 @@ export function ListItem({ item, listId }) {
 		updateItem(listId, item);
 	};
 	const onDelete = () => {
-		deleteItem(listId, item);
+		if (window.confirm('Are you sure you want to delete this item?')) {
+			deleteItem(listId, item);
+		}
 	};
 	useEffect(() => {
 		if (item.dateLastPurchased) {
