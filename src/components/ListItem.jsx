@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react';
 import './ListItem.css';
 import { updateItem } from '../api/firebase';
+import { deleteItem } from '../api/firebase';
 
 export function ListItem({ item, listId }) {
 	const [checked, setChecked] = useState(false);
 
 	const checkItem = (e) => {
 		updateItem(listId, item);
+	};
+	const onDelete = () => {
+		deleteItem(listId, item);
 	};
 	useEffect(() => {
 		if (item.dateLastPurchased) {
@@ -33,6 +37,7 @@ export function ListItem({ item, listId }) {
 
 				{item.name}
 			</label>
+			<button onClick={onDelete}>Delete</button>
 		</li>
 	);
 }
