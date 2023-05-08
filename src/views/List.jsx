@@ -1,6 +1,7 @@
 import { ListItem } from '../components';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { comparePurchaseUrgency } from '../api/firebase';
 import Chippy3 from '/img/Chippy3.gif';
 import './List.css';
 
@@ -51,7 +52,7 @@ export function List({ data, listId }) {
 			</form>
 			<ul>
 				{/* filters the list to match the user's query as user types, then maps over the items that match the filter to display them */}
-				{data
+				{comparePurchaseUrgency(data)
 					.filter((item) =>
 						item.name?.toLowerCase().includes(query.toLowerCase()),
 					)

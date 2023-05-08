@@ -122,3 +122,29 @@ export async function deleteItem() {
 	 * this function must accept!
 	 */
 }
+
+export function comparePurchaseUrgency(data) {
+	console.log(data);
+	const sortedData = data.sort((a, b) => {
+		const nameA = a.name.toLowerCase();
+		const nameB = b.name.toLowerCase();
+
+		if (nameA < nameB) {
+			return -1;
+		}
+
+		if (nameA > nameB) {
+			return 1;
+		}
+
+		return 0;
+	});
+	return sortedData;
+	//walk the array, checking each item
+	//use getDaysBetweenDates function to compare current date to nextPurchaseDate of item
+	//if 7 days or fewer push to top (soon)
+	//if between 7 & 30 days push next (kind of soon)
+	//if 30+ days push next (not very soon)
+	//if 60+ since last purchase date push last (inactive)
+	//then sort alphabetically within purchase categories
+}
