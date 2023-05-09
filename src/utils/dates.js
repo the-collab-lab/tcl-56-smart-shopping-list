@@ -11,6 +11,11 @@ export function getFutureDate(offset) {
 	return new Date(Date.now() + offset * ONE_DAY_IN_MILLISECONDS);
 }
 
+// transforms Firebase date object to JS date object
+export function transformToJSDate(date) {
+	return date.toDate();
+}
+
 /**
  * startDate and endDate are required to be two JavaScript Date objects in order for the compare function to work
  * @param {Date} startDate

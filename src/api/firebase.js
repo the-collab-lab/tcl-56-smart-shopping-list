@@ -9,6 +9,7 @@ import {
 import { db } from './config';
 import {
 	getFutureDate,
+	transformToJSDate,
 	getDaysBetweenDates,
 	getNextPurchaseDate,
 } from '../utils';
@@ -90,9 +91,6 @@ export async function updateItem(listId, item) {
 		totalPurchases,
 	} = item;
 
-	const transformToJSDate = (date) => {
-		return date.toDate();
-	};
 	const prevEstimate = getDaysBetweenDates(
 		transformToJSDate(dateCreated),
 		transformToJSDate(dateNextPurchased),
@@ -125,7 +123,7 @@ export async function deleteItem() {
 
 export function comparePurchaseUrgency(data) {
 	console.log(data);
-	const sortedData = data.sort((a, b) => {
+	const alphabeticalData = data.sort((a, b) => {
 		const nameA = a.name.toLowerCase();
 		const nameB = b.name.toLowerCase();
 
@@ -139,12 +137,21 @@ export function comparePurchaseUrgency(data) {
 
 		return 0;
 	});
-	return sortedData;
-	//walk the array, checking each item
-	//use getDaysBetweenDates function to compare current date to nextPurchaseDate of item
-	//if 7 days or fewer push to top (soon)
-	//if between 7 & 30 days push next (kind of soon)
-	//if 30+ days push next (not very soon)
-	//if 60+ since last purchase date push last (inactive)
-	//then sort alphabetically within purchase categories
+	const sortByPurchaseData = alphabeticalData.sort((a, b) => {
+		const nextPurchaseA = transformToJSDate(a.dateNextPurchased);
+		const nextPurchaseB = transformToJSDate(b.dateNextPurchased);
+		const today = new Date();
+		const daysUntilNextPurchaseA = getDaysBetweenDates(nextPurchaseA, today);
+		const daysUntilNextPurchaseB = getDaysBetweenDates(nextPurchaseB, today);
+		if (daysUntilNextPurchaseA < daysUntilNextPurchaseB) {
+			return -1;
+		}
+
+		if (daysUntilNextPurchaseA > daysUntilNextPurchaseB) {
+			return 1;
+		}
+
+		return 0;
+	});
+	return sortByPurchaseData;
 }
