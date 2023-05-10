@@ -123,7 +123,23 @@ export async function deleteItem() {
 
 export function comparePurchaseUrgency(data) {
 	console.log(data);
-	const alphabeticalData = data.sort((a, b) => {
+	const today = new Date();
+	// splitting data into inactive and active
+	const inActiveItems = data.filter((item) => {
+		return (
+			getDaysBetweenDates(transformToJSDate(item.dateLastPurchased), today) > 60
+		);
+	});
+	const activeItems = data.filter((item) => {
+		return (
+			item.dateLastPurchased === null ||
+			getDaysBetweenDates(transformToJSDate(item.dateLastPurchased), today) < 60
+		);
+	});
+	console.log('inactive items', inActiveItems);
+	console.log('active items', activeItems);
+	// sorting active items
+	const alphabeticalActiveData = activeItems.sort((a, b) => {
 		const nameA = a.name.toLowerCase();
 		const nameB = b.name.toLowerCase();
 
@@ -137,10 +153,9 @@ export function comparePurchaseUrgency(data) {
 
 		return 0;
 	});
-	const sortByPurchaseData = alphabeticalData.sort((a, b) => {
+	const sortByPurchaseActiveData = alphabeticalActiveData.sort((a, b) => {
 		const nextPurchaseA = transformToJSDate(a.dateNextPurchased);
 		const nextPurchaseB = transformToJSDate(b.dateNextPurchased);
-		const today = new Date();
 		const daysUntilNextPurchaseA = getDaysBetweenDates(nextPurchaseA, today);
 		const daysUntilNextPurchaseB = getDaysBetweenDates(nextPurchaseB, today);
 		if (daysUntilNextPurchaseA < daysUntilNextPurchaseB) {
@@ -153,5 +168,43 @@ export function comparePurchaseUrgency(data) {
 
 		return 0;
 	});
-	return sortByPurchaseData;
+
+	// inactive sorting
+	const alphabeticalInactiveData = inActiveItems.sort((a, b) => {
+		const nameA = a.name.toLowerCase();
+		const nameB = b.name.toLowerCase();
+
+		if (nameA < nameB) {
+			return -1;
+		}
+
+		if (nameA > nameB) {
+			return 1;
+		}
+
+		return 0;
+	});
+	const sortByPurchaseInactiveData = alphabeticalInactiveData.sort((a, b) => {
+		const nextPurchaseA = transformToJSDate(a.dateNextPurchased);
+		const nextPurchaseB = transformToJSDate(b.dateNextPurchased);
+		const daysUntilNextPurchaseA = getDaysBetweenDates(nextPurchaseA, today);
+		const daysUntilNextPurchaseB = getDaysBetweenDates(nextPurchaseB, today);
+		if (daysUntilNextPurchaseA < daysUntilNextPurchaseB) {
+			return -1;
+		}
+
+		if (daysUntilNextPurchaseA > daysUntilNextPurchaseB) {
+			return 1;
+		}
+
+		return 0;
+	});
+	const sortedData = [
+		...sortByPurchaseActiveData,
+		...sortByPurchaseInactiveData,
+	];
+	return sortedData;
 }
+
+// working but a little buggy. works fine while our "bread" item is inactive (set date in database)
+// but if you then click the check on the bread item and it's added back into the active list, it doesn't get re-sorted with activeData and remains at end of list

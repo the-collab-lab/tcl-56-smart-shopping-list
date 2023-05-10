@@ -13,7 +13,7 @@ export function getFutureDate(offset) {
 
 // transforms Firebase date object to JS date object
 export function transformToJSDate(date) {
-	return date.toDate();
+	return date?.toDate();
 }
 
 /**
@@ -22,7 +22,7 @@ export function transformToJSDate(date) {
  * @param {Date} endDate
  */
 export function getDaysBetweenDates(startDate, endDate) {
-	let timeDifference = endDate.getTime() - startDate.getTime();
+	let timeDifference = endDate?.getTime() - startDate?.getTime();
 	let totalDays = Math.abs(timeDifference / ONE_DAY_IN_MILLISECONDS);
 	return Math.floor(totalDays);
 }
