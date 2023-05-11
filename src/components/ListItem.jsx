@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
 import './ListItem.css';
 import { updateItem } from '../api/firebase';
-import { getItemDaysUntilNextPurchase } from '../utils';
+import {
+	getItemDaysUntilNextPurchase,
+	getItemDaysSinceLastPurchase,
+} from '../utils';
 
 export function ListItem({ item, listId }) {
 	const [checked, setChecked] = useState(false);
@@ -30,14 +33,16 @@ export function ListItem({ item, listId }) {
 			getItemDaysUntilNextPurchase(item) > 7 &&
 			getItemDaysUntilNextPurchase(item) < 30
 		) {
-			return "You've got some time";
+			return "You've got a bit of time";
 		} else if (
 			getItemDaysUntilNextPurchase(item) >= 30 &&
 			getItemDaysUntilNextPurchase(item) < 60
 		) {
 			return 'Not for a while';
-		} else {
+		} else if (getItemDaysSinceLastPurchase(item) > 60) {
 			return "You don't seem to be buying this anymore";
+		} else {
+			return "You haven't purchased this item yet!";
 		}
 	};
 

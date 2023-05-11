@@ -7,6 +7,13 @@ export function getItemDaysUntilNextPurchase(item) {
 	return getDaysBetweenDates(nextPurchase, today);
 }
 
+export function getItemDaysSinceLastPurchase(item) {
+	const today = new Date();
+	const lastPurchase = transformToJSDate(item.dateLastPurchased);
+
+	return getDaysBetweenDates(lastPurchase, today);
+}
+
 export function sortItems(data) {
 	return data.sort((a, b) => {
 		const daysUntilNextPurchaseA = getItemDaysUntilNextPurchase(a);

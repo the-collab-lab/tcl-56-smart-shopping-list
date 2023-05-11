@@ -13,6 +13,7 @@ import {
 	getDaysBetweenDates,
 	getNextPurchaseDate,
 	getItemDaysUntilNextPurchase,
+	getItemDaysSinceLastPurchase,
 	sortItems,
 } from '../utils';
 import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
@@ -126,7 +127,7 @@ export async function deleteItem() {
 export function comparePurchaseUrgency(data) {
 	const inActiveItems = sortItems(
 		data.filter((item) => {
-			return getItemDaysUntilNextPurchase(item) > 60;
+			return getItemDaysSinceLastPurchase(item) > 60;
 		}),
 	);
 
