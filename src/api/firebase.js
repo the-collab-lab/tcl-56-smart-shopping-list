@@ -117,5 +117,11 @@ export async function updateItem(listId, item) {
 }
 
 export async function deleteItem(listId, item) {
-	return await deleteDoc(doc(db, listId, item.id));
+	try {
+		await deleteDoc(doc(db, listId, item.id));
+		return { success: true };
+	} catch (error) {
+		console.log('Failed to delete item', error);
+		return { success: false, error: error.message };
+	}
 }
