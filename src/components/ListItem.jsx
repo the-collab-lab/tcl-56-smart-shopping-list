@@ -36,7 +36,7 @@ export function ListItem({ item, listId }) {
 			return "You've got a bit of time";
 		} else if (
 			getItemDaysUntilNextPurchase(item) >= 30 &&
-			getItemDaysUntilNextPurchase(item) < 60
+			getItemDaysSinceLastPurchase(item) < 60
 		) {
 			return 'Not for a while';
 		} else if (getItemDaysSinceLastPurchase(item) > 60) {

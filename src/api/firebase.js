@@ -135,7 +135,7 @@ export function comparePurchaseUrgency(data) {
 		data.filter((item) => {
 			return (
 				item.dateLastPurchased === null ||
-				getItemDaysUntilNextPurchase(item) < 60
+				getItemDaysSinceLastPurchase(item) < 60
 			);
 		}),
 	);
