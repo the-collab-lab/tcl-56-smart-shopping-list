@@ -30,3 +30,19 @@ export function sortItems(data) {
 		}
 	});
 }
+
+export function comparePurchaseUrgency(data) {
+	const inactiveItems = sortItems(
+		data.filter((item) => {
+			return getItemDaysSinceLastPurchase(item) >= 60;
+		}),
+	);
+
+	const activeItems = sortItems(
+		data.filter((item) => {
+			return getItemDaysSinceLastPurchase(item) < 60;
+		}),
+	);
+
+	return [...activeItems, ...inactiveItems];
+}

@@ -1,7 +1,7 @@
 import { ListItem } from '../components';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { comparePurchaseUrgency } from '../api/firebase';
+import { comparePurchaseUrgency } from '../utils/items';
 import Chippy3 from '/img/Chippy3.gif';
 import './List.css';
 
