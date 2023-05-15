@@ -128,22 +128,17 @@ export async function deleteItem(listId, item) {
 }
 
 export function comparePurchaseUrgency(data) {
-	const inActiveItems = sortItems(
+	const inactiveItems = sortItems(
 		data.filter((item) => {
-			return getItemDaysSinceLastPurchase(item) > 60;
+			return getItemDaysSinceLastPurchase(item) >= 60;
 		}),
 	);
 
 	const activeItems = sortItems(
 		data.filter((item) => {
-			return (
-				item.dateLastPurchased === null ||
-				getItemDaysSinceLastPurchase(item) < 60
-			);
+			return getItemDaysSinceLastPurchase(item) < 60;
 		}),
 	);
 
-	const sortedData = [...activeItems, ...inActiveItems];
-
-	return sortedData;
+	return [...activeItems, ...inactiveItems];
 }
