@@ -3,6 +3,7 @@ import {
 	onSnapshot,
 	addDoc,
 	updateDoc,
+	deleteDoc,
 	increment,
 	doc,
 } from 'firebase/firestore';
@@ -116,12 +117,14 @@ export async function updateItem(listId, item) {
 	});
 }
 
-export async function deleteItem() {
-	/**
-	 * TODO: Fill this out so that it uses the correct Firestore function
-	 * to delete an existing item. You'll need to figure out what arguments
-	 * this function must accept!
-	 */
+export async function deleteItem(listId, item) {
+	try {
+		await deleteDoc(doc(db, listId, item.id));
+		return { success: true };
+	} catch (error) {
+		console.log('Failed to delete item', error);
+		return { success: false, error: error.message };
+	}
 }
 
 export function comparePurchaseUrgency(data) {

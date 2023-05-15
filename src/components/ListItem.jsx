@@ -5,13 +5,26 @@ import {
 	getItemDaysUntilNextPurchase,
 	getItemDaysSinceLastPurchase,
 } from '../utils';
+import { deleteItem } from '../api/firebase';
+
 
 export function ListItem({ item, listId }) {
 	const [checked, setChecked] = useState(false);
+	const [deleteError, setDeleteError] = useState('');
 
 	const checkItem = (e) => {
 		updateItem(listId, item);
 	};
+	async function handleDelete() {
+		if (window.confirm('Are you sure you want to delete this item?')) {
+			const response = await deleteItem(listId, item);
+			console.log(response);
+			response.success
+				? console.log('success')
+				: setDeleteError('Failed to delete item, please try again later');
+		}
+	}
+
 	useEffect(() => {
 		if (item.dateLastPurchased) {
 			const lastPurchasedDate = item.dateLastPurchased.toDate();
@@ -54,11 +67,12 @@ export function ListItem({ item, listId }) {
 				) : (
 					<input type="checkbox" id={item.id} onChange={checkItem} />
 				)}
-
-				{item.name}
+				{item.name} {deleteError}
 			</label>
+
 			<li>Purchase again: {purchaseUrgencyMessage(item)}</li>
 			<br></br>
+			<button onClick={handleDelete}>Delete</button>
 		</li>
 	);
 }
