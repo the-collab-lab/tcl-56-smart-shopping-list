@@ -11,13 +11,18 @@ export function getFutureDate(offset) {
 	return new Date(Date.now() + offset * ONE_DAY_IN_MILLISECONDS);
 }
 
+// transforms Firebase date object to JS date object
+export function transformToJSDate(date) {
+	return date?.toDate();
+}
+
 /**
  * startDate and endDate are required to be two JavaScript Date objects in order for the compare function to work
  * @param {Date} startDate
  * @param {Date} endDate
  */
 export function getDaysBetweenDates(startDate, endDate) {
-	let timeDifference = endDate.getTime() - startDate.getTime();
+	let timeDifference = endDate?.getTime() - startDate?.getTime();
 	let totalDays = Math.abs(timeDifference / ONE_DAY_IN_MILLISECONDS);
 	return Math.floor(totalDays);
 }
