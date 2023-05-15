@@ -1,4 +1,9 @@
-import { getDaysBetweenDates, transformToJSDate } from '../src/utils';
+import {
+	getDaysBetweenDates,
+	transformToJSDate,
+	getNextPurchaseDate,
+	getFutureDate,
+} from '../src/utils';
 import { Timestamp } from 'firebase/firestore';
 
 // Tests for transformToJSDate
@@ -35,5 +40,44 @@ describe('calculates days between dates correctly', () => {
 		let date2 = new Date('2023-01-02');
 
 		expect(getDaysBetweenDates(date2, date1)).toEqual(1);
+	});
+});
+
+describe('calculates the next day to purchase an item and returns a new date', () => {
+	it('receives 1 day from today and returns a date 1 day in the future', () => {
+		let today = new Date();
+		let getDateOfMonth = today.getDate();
+		let addedDaystoDate = getDateOfMonth + 1;
+		let nextDate = today.setDate(addedDaystoDate);
+		nextDate = new Date(nextDate);
+		expect(getNextPurchaseDate(1)).toEqual(nextDate);
+	});
+
+	it('receives a large number of days from today and returns the correct month for the date', () => {
+		let today = new Date();
+		let getDateOfMonth = today.getDate();
+		let addedDaystoDate = getDateOfMonth + 55;
+		let nextDate = today.setDate(addedDaystoDate);
+		nextDate = new Date(nextDate);
+		expect(getNextPurchaseDate(55)).toEqual(nextDate);
+	});
+
+	it('returns the same date if 0 days are passed', () => {
+		let today = new Date();
+		let getDateOfMonth = today.getDate();
+		let addedDaystoDate = getDateOfMonth + 0;
+		let nextDate = today.setDate(addedDaystoDate);
+		nextDate = new Date(nextDate);
+		expect(getNextPurchaseDate(0)).toEqual(nextDate);
+	});
+});
+
+describe('getFutureDate', () => {
+	it('receives a number of days and returns a date offset by that many days', () => {
+		expect(getFutureDate(3)).toEqual(new Date(Date.now() + 3 * 86400000));
+	});
+
+	it('returns 1 day in the future if 0 days are passed', () => {
+		expect(getFutureDate(0)).toEqual(new Date(Date.now() + 0 * 86400000));
 	});
 });
