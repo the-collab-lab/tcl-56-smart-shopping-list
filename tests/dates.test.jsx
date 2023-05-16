@@ -43,6 +43,7 @@ describe('calculates days between dates correctly', () => {
 	});
 });
 
+// tests for getNextPurchaseDate function
 describe('calculates the next day to purchase an item and returns a new date', () => {
 	const getNextDate = (daysToAdd) => {
 		const today = new Date();
