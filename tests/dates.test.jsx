@@ -44,40 +44,38 @@ describe('calculates days between dates correctly', () => {
 });
 
 describe('calculates the next day to purchase an item and returns a new date', () => {
+	const getNextDate = (daysToAdd) => {
+		const today = new Date();
+		const nextDate = new Date(today.setDate(today.getDate() + daysToAdd));
+		return nextDate;
+	};
+
 	it('receives 1 day from today and returns a date 1 day in the future', () => {
-		let today = new Date();
-		let getDateOfMonth = today.getDate();
-		let addedDaystoDate = getDateOfMonth + 1;
-		let nextDate = today.setDate(addedDaystoDate);
-		nextDate = new Date(nextDate);
-		expect(getNextPurchaseDate(1)).toEqual(nextDate);
+		const expectedDate = getNextDate(1);
+		expect(getNextPurchaseDate(1)).toEqual(expectedDate);
 	});
 
 	it('receives a large number of days from today and returns the correct month for the date', () => {
-		let today = new Date();
-		let getDateOfMonth = today.getDate();
-		let addedDaystoDate = getDateOfMonth + 55;
-		let nextDate = today.setDate(addedDaystoDate);
-		nextDate = new Date(nextDate);
-		expect(getNextPurchaseDate(55)).toEqual(nextDate);
+		const expectedDate = getNextDate(55);
+		expect(getNextPurchaseDate(55)).toEqual(expectedDate);
 	});
 
 	it('returns the same date if 0 days are passed', () => {
-		let today = new Date();
-		let getDateOfMonth = today.getDate();
-		let addedDaystoDate = getDateOfMonth + 0;
-		let nextDate = today.setDate(addedDaystoDate);
-		nextDate = new Date(nextDate);
-		expect(getNextPurchaseDate(0)).toEqual(nextDate);
+		const expectedDate = getNextDate(0);
+		expect(getNextPurchaseDate(0)).toEqual(expectedDate);
 	});
 });
 
 describe('getFutureDate', () => {
+	const ONE_DAY_IN_MILLISECONDS = 86400000;
+	const newDateOffsetByNum = (num) =>
+		new Date(Date.now() + num * ONE_DAY_IN_MILLISECONDS);
+
 	it('receives a number of days and returns a date offset by that many days', () => {
-		expect(getFutureDate(3)).toEqual(new Date(Date.now() + 3 * 86400000));
+		expect(getFutureDate(3)).toEqual(newDateOffsetByNum(3));
 	});
 
 	it('returns 1 day in the future if 0 days are passed', () => {
-		expect(getFutureDate(0)).toEqual(new Date(Date.now() + 0 * 86400000));
+		expect(getFutureDate(0)).toEqual(newDateOffsetByNum(0));
 	});
 });
