@@ -27,6 +27,10 @@ export function App() {
 	 **/
 	const [timeOutErrorMsg, setTimeOutErrorMsg] = useState('');
 	const [joinListErrorMsg, setJoinListErrorMsg] = useState('');
+
+	const docExists = async (token) => {
+		return collection(db, `${token}`);
+	};
 	/**
 	 * Callback function gets passed as a prop through Home component to retrieve generated token.
 	 * The addDoc function call is wrapped in a Promise.race() method with a Promise that rejects after a certain timeout period.
@@ -35,16 +39,23 @@ export function App() {
 	 **/
 	const setList = async (token) => {
 		try {
-			const result = await Promise.race([
-				addDoc(collection(db, `${token}`), {}),
-				new Promise((resolve, reject) => {
-					setTimeout(() => {
-						reject(new Error('Promise timed out: Database not responding'));
-					}, 5000);
-				}),
-			]);
-			setListToken(token);
-			console.log('New list created with ID: ', result.id);
+			// Check if token already exists in the database
+			const tokenExists = await docExists(token);
+			if (tokenExists) {
+				console.log('Token already exists in the database.');
+				setListToken(token);
+			} else {
+				const result = await Promise.race([
+					addDoc(collection(db, `${token}`), {}),
+					new Promise((resolve, reject) => {
+						setTimeout(() => {
+							reject(new Error('Promise timed out: Database not responding'));
+						}, 5000);
+					}),
+				]);
+				setListToken(token);
+				console.log('New list created with ID: ', result.id);
+			}
 		} catch (e) {
 			console.error('Error adding new list token: ', e);
 			setTimeOutErrorMsg('New List Error. Please refresh or try again later.');
