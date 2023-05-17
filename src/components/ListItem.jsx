@@ -7,7 +7,6 @@ import {
 } from '../utils';
 import { deleteItem } from '../api/firebase';
 
-
 export function ListItem({ item, listId }) {
 	const [checked, setChecked] = useState(false);
 	const [deleteError, setDeleteError] = useState('');
@@ -70,7 +69,7 @@ export function ListItem({ item, listId }) {
 				{item.name} {deleteError}
 			</label>
 
-			<li>Purchase again: {purchaseUrgencyMessage(item)}</li>
+			<span>Purchase again: {purchaseUrgencyMessage(item)}</span>
 			<br></br>
 			<button onClick={handleDelete}>Delete</button>
 		</li>
