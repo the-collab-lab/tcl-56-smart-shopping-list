@@ -24,8 +24,8 @@ export function List({ data, listId }) {
 	return (
 		<>
 			{/* <p>Welcome to your shopping list!</p> */}
-			<div id="chippyBox">
-				<div className="chippy-suggestion chippy-suggestion-bottom-right">
+			<div id="chippyBox" className="grid grid-cols-3">
+				<div className="chippy-suggestion chippy-suggestion-bottom-right col-span-2">
 					{data.length < 2
 						? 'Uh oh! Your shopping list is empty! Try using the "Add Item" button to begin your list!'
 						: 'Yummy! That list is looking good! Did you know that you can use the filter to search within your list?'}{' '}
