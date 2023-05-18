@@ -9,6 +9,10 @@ export function AddItem({ data, listId }) {
 	const [submitMessage, setSubmitMessage] = useState('');
 
 	const onChange = (e) => {
+		if (submitMessage) {
+			setSubmitMessage('');
+		}
+
 		if (e.target.name === 'daysTillNextPurchase') {
 			setItemData((itemData) => ({
 				...itemData,
