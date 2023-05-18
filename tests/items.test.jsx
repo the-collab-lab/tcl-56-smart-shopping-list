@@ -1,5 +1,9 @@
-import { getItemDaysUntilNextPurchase } from '../src/utils';
-import { getDaysBetweenDates, transformToJSDate } from '../src/utils';
+import {
+	getItemDaysUntilNextPurchase,
+	getItemDaysSinceLastPurchase,
+	sortItems,
+	comparePurchaseUrgency,
+} from '../src/utils';
 import { Timestamp } from 'firebase/firestore';
 
 // tests for getItemDaysUntilNextPurchase function
@@ -26,3 +30,20 @@ describe('uses getDaysBetweenDates function to calculate number of days between 
 		expect(getItemDaysUntilNextPurchase(item)).toEqual(29);
 	});
 });
+
+// Tests for getItemDaysSinceLastPurchase
+
+describe('this function receives an item object from the database and calculates the number of days between today and either the items dateLastPurchased date property or if no date last purchased then the items date created date property', () => {
+	it('');
+});
+
+// export function getItemDaysSinceLastPurchase(item) {
+// 	const today = new Date();
+// 	const lastPurchase = transformToJSDate(
+// 		item.dateLastPurchased || item.dateCreated,
+// 	);
+
+// 	return getDaysBetweenDates(lastPurchase, today);
+// }
+
+// Tests for comparePurchaseUrgency
