@@ -76,10 +76,10 @@ describe('getFutureDate', () => {
 		new Date(Date.now() + num * ONE_DAY_IN_MILLISECONDS);
 
 	it('receives a number of days and returns a date offset by that many days', () => {
-		expect(getFutureDate(3)).toEqual(newDateOffsetByNum(3));
+		expect(getFutureDate(3).date).toEqual(newDateOffsetByNum(3).date);
 	});
 
 	it('returns 1 day in the future if 0 days are passed', () => {
-		expect(getFutureDate(0)).toEqual(newDateOffsetByNum(0));
+		expect(getFutureDate(0).date).toEqual(newDateOffsetByNum(0).date);
 	});
 });
