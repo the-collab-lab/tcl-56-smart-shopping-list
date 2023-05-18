@@ -36,13 +36,14 @@ export function List({ data, listId }) {
 					alt='Helpful potato chip gif named Chippy, à la "Clippy", who suggests that user adds an item to their shopping list '
 				></img>
 			</div>
-			<div id="searchList">
+			<div id="searchList" className="m-2 mt-4">
 				<p>
 					{data.length < 2
 						? 'Your list is empty.  Add an item to get started.'
 						: null}
 				</p>
 				<button
+					className="btn"
 					onClick={() => {
 						navigate('/add-item');
 					}}
@@ -51,15 +52,16 @@ export function List({ data, listId }) {
 				</button>
 				<form>
 					<label htmlFor="searchbar">
-						Filter Items
+						<h3 className="text-lg">Search List</h3>
 						<input
 							type="text"
 							id="searchbar"
+							className="inputField"
 							onChange={handleSearch}
 							value={query}
 						></input>
 					</label>
-					<button type="button" onClick={clearFilter}>
+					<button className="btn" type="button" onClick={clearFilter}>
 						Clear
 					</button>
 				</form>
