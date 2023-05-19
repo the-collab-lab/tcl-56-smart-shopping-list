@@ -24,7 +24,7 @@ export function List({ data, listId }) {
 	return (
 		<>
 			{/* <p>Welcome to your shopping list!</p> */}
-			<div id="chippyBox" className="grid grid-cols-3">
+			<div id="chippyBox" className="grid grid-cols-3 mt-8">
 				<div className="chippy-suggestion chippy-suggestion-bottom-right col-span-2">
 					{data.length < 2
 						? 'Uh oh! Your shopping list is empty! Try using the "Add Item" button to begin your list!'
@@ -67,6 +67,12 @@ export function List({ data, listId }) {
 				</form>
 			</div>
 			<div id="itemList">
+				<ul className="grid grid-cols-10">
+					<li className="col-span-1"></li>
+					<li className="col-span-7 text-4xl">Item</li>
+					<li className="col-span-1"></li>
+					<li className="col-span-1"></li>
+				</ul>
 				<ul>
 					{/* filters the list to match the user's query as user types, then maps over the items that match the filter to display them */}
 					{comparePurchaseUrgency(data)
@@ -78,7 +84,35 @@ export function List({ data, listId }) {
 						})}
 				</ul>
 			</div>
-			<div id="legend"></div>
+			<div id="legend">
+				<h3 className="h3">Purchase Again?</h3>
+				<div className="grid grid-rows-2 gap-6">
+					<ul className="grid grid-cols-5">
+						<li className="col-span-1">
+							<span className="legendIcon inline-block">S</span>
+							<span className="inline-block">Soon!</span>
+						</li>
+						<li className="col-span-2">
+							<span className="legendIcon inline-block">KS</span>
+							<span className="inline-block">You got a bit of time!</span>
+						</li>
+						<li className="col-span-2">
+							<span className="legendIcon inline-block">NS</span>
+							<span className="inline-block">Not for a while!</span>
+						</li>
+					</ul>
+					<ul className="grid grid-cols-5">
+						<li className="col-span-1">
+							<span className="legendIcon inline-block">I</span>
+							<span className="inline-block">Inactive!</span>
+						</li>
+						<li className="col-span-2">
+							<span className="legendIcon inline-block">NP</span>
+							<span className="inline-block">Not Yet Purchased!</span>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</>
 	);
 }

@@ -123,3 +123,7 @@ ul {
 .h3 {
 	@apply text-2xl font-semibold;
 }
+
+.legendIcon {
+	@apply border-2 text-center mr-2 border-gray-400 rounded-md h-11 w-12;
+}
