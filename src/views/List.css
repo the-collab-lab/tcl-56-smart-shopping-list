@@ -1,3 +1,9 @@
+#itemList {
+	height: 300px;
+	overflow: hidden;
+	overflow-y: scroll;
+}
+
 #chippy {
 	height: 100px;
 	/* position: fixed;
