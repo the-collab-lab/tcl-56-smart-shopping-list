@@ -13,7 +13,15 @@ export function getFutureDate(offset) {
 
 // transforms Firebase date object to JS date object
 export function transformToJSDate(date) {
-	return date?.toDate();
+	if (date) {
+		const jsFullDate = date?.toDate();
+		const month = jsFullDate?.getMonth();
+		const day = jsFullDate?.getDate();
+		const year = jsFullDate?.getFullYear();
+		return new Date(year, month, day);
+	} else {
+		return null;
+	}
 }
 
 /**

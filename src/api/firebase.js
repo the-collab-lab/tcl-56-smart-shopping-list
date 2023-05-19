@@ -13,9 +13,6 @@ import {
 	transformToJSDate,
 	getDaysBetweenDates,
 	getNextPurchaseDate,
-	getItemDaysUntilNextPurchase,
-	getItemDaysSinceLastPurchase,
-	sortItems,
 } from '../utils';
 import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
 /**
@@ -125,25 +122,4 @@ export async function deleteItem(listId, item) {
 		console.log('Failed to delete item', error);
 		return { success: false, error: error.message };
 	}
-}
-
-export function comparePurchaseUrgency(data) {
-	const inActiveItems = sortItems(
-		data.filter((item) => {
-			return getItemDaysSinceLastPurchase(item) > 60;
-		}),
-	);
-
-	const activeItems = sortItems(
-		data.filter((item) => {
-			return (
-				item.dateLastPurchased === null ||
-				getItemDaysSinceLastPurchase(item) < 60
-			);
-		}),
-	);
-
-	const sortedData = [...activeItems, ...inActiveItems];
-
-	return sortedData;
 }
