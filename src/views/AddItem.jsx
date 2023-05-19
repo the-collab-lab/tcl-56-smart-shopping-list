@@ -46,12 +46,15 @@ export function AddItem({ data, listId }) {
 		<>
 			<form onSubmit={onFormSubmit}>
 				<div>
-					<label htmlFor="item">Item name:</label>
+					<label className="h3" htmlFor="item">
+						Item name:
+					</label>
 				</div>
 				<input
 					type="text"
 					name="item"
 					id="item"
+					className="inputField"
 					required
 					value={itemData.itemName}
 					onChange={onChange}
@@ -100,7 +103,9 @@ export function AddItem({ data, listId }) {
 						</div>
 					</fieldset>
 				</div>
-				<button type="submit">Add Item</button>
+				<button className="btn" type="submit">
+					Add Item
+				</button>
 			</form>
 			<p>{submitMessage}</p>
 		</>
