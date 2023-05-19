@@ -52,7 +52,7 @@ export function List({ data, listId }) {
 				</button>
 				<form>
 					<label htmlFor="searchbar">
-						<h3 className="text-lg">Search List</h3>
+						<h3 className="h3">Search List</h3>
 						<input
 							type="text"
 							id="searchbar"
