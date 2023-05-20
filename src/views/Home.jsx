@@ -22,30 +22,38 @@ export function Home({ makeNewList, joinList, handleError, joinListErrorMsg }) {
 
 	return (
 		<div className="Home">
-			<p>To create a new shopping list, give your list a name.</p>
+			<p className="h3 pt-10">
+				To create a new shopping list, give your list a name.
+			</p>
 			{handleError ? <span>{handleError}</span> : null}
-			<form onSubmit={handleClick}>
-				<label htmlFor="listName">List name </label>
+      <form onSubmit={handleClick}>
+				<label className="text-2xl font-medium" htmlFor="listName">List name </label>
 				<input
 					type="text"
 					name="listName"
 					id="listName"
+					className="inputField"
 					required
 					value={listName}
 					onChange={(e) => setListName(e.target.value)}
 					pattern="[a-zA-Z0-9\s]+"
 				/>
-				<button type="submit">Create a new list!</button>
-			</form>
-
+				<button className="btn mt-4 mb-4" type="submit">Create a new list!</button>
+			</form> 
+			<div className="p-6 text-4xl text-center">-OR-</div>
 			<div className="JoinListForm">
-				<p>Join an existing shopping list by entering a list name.</p>
+				<p className="text-2xl">
+					Join an existing shopping list by entering a list name.
+				</p>
 				{joinListErrorMsg ? <span>{joinListErrorMsg}</span> : null}
 				<form onSubmit={handleJoinList}>
-					<label htmlFor="input">Shared list name </label>
+					<label className="text-2xl font-medium" htmlFor="input">
+						Share list name:
+					</label>
 					<input
 						name="input"
 						id="input"
+						className="inputField"
 						type="text"
 						value={inputValue}
 						onChange={(event) => setInputValue(event.target.value)}
@@ -58,7 +66,9 @@ export function Home({ makeNewList, joinList, handleError, joinListErrorMsg }) {
 						// }
 						// onInput={(e) => e.target.setCustomValidity('')}
 					/>
-					<button type="submit">Join an existing list</button>
+					<button className="btn" type="submit">
+						Join an existing list
+					</button>
 				</form>
 			</div>
 		</div>

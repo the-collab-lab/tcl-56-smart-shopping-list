@@ -38,60 +38,94 @@ export function List({ data, listId }) {
 
 	return (
 		<>
-			<p>
-				Welcome to your <strong>{listName}</strong> shopping list!
-			</p>
-			<p>
-				{data.length < 2 ? (
-					'Your list is empty.  Add an item to get started.'
-				) : (
-					<>
-						<span>Want to check out a different list? </span>
-						<button onClick={removeListFromStorage}>Click here</button>
-					</>
-				)}
-			</p>
-			<button
-				onClick={() => {
-					navigate('/add-item');
-				}}
-			>
-				Add Item
-			</button>
-			<form>
-				<label htmlFor="searchbar">
-					Filter Items
-					<input
-						type="text"
-						id="searchbar"
-						onChange={handleSearch}
-						value={query}
-					></input>
-				</label>
-				<button type="button" onClick={clearFilter}>
-					Clear
-				</button>
-			</form>
-			<ul>
-				{/* filters the list to match the user's query as user types, then maps over the items that match the filter to display them */}
-				{comparePurchaseUrgency(data)
-					.filter((item) =>
-						item.name?.toLowerCase().includes(query.toLowerCase()),
-					)
-					.map((item) => {
-						return <ListItem key={item.id} item={item} listId={listId} />;
-					})}
-			</ul>
-			<div className="chippy-suggestion chippy-suggestion-bottom-right">
-				{data.length < 2
-					? `Uh oh! ${listName} list is empty! Try using the "Add Item" button to begin your list!`
-					: `Yummy! Your shopping list is looking good! Did you know that you can use the filter to search within ${listName}?`}
+			<div id="chippyBox" className="grid grid-cols-3 pt-6">
+				<div className="chippy-suggestion chippy-suggestion-bottom-right col-span-2">
+					{data.length < 1
+						? `Uh oh! ${listName} list is empty! Try using the "Add Item" button to begin your list!`
+						: `Yummy! That list is looking good! Did you know that you can use the filter to search within ${listName}?`}
+				</div>
+				<img
+					id="chippy"
+					src={Chippy3}
+					alt='Helpful potato chip gif named Chippy, à la "Clippy", who suggests that user adds an item to their shopping list '
+				></img>
 			</div>
-			<img
-				id="chippy"
-				src={Chippy3}
-				alt='Helpful potato chip gif named Chippy, à la "Clippy", who suggests that user adds an item to their shopping list '
-			></img>
+			<div id="searchList" className="m-2 pt-6">
+				<button
+					className="btn mb-2"
+					onClick={() => {
+						navigate('/add-item');
+					}}
+				>
+					Add Item
+				</button>
+				<form>
+					<label htmlFor="searchbar">
+						<h3 className="h3">Search List</h3>
+						<input
+							type="text"
+							id="searchbar"
+							className="inputField"
+							onChange={handleSearch}
+							value={query}
+						></input>
+					</label>
+					<button className="btn" type="button" onClick={clearFilter}>
+						Clear
+					</button>
+				</form>
+			</div>
+			<div id="itemsGroup">
+				<ul className="grid grid-cols-10">
+					<li className="col-span-1"></li>
+					<li className="col-span-7 font-semibold	text-3xl">Item</li>
+					<li className="col-span-1"></li>
+					<li className="col-span-1"></li>
+				</ul>
+				<ul id="itemList">
+					{/* filters the list to match the user's query as user types, then maps over the items that match the filter to display them */}
+					{comparePurchaseUrgency(data)
+						.filter((item) =>
+							item.name?.toLowerCase().includes(query.toLowerCase()),
+						)
+						.map((item) => {
+							return <ListItem key={item.id} item={item} listId={listId} />;
+						})}
+				</ul>
+			</div>
+						<>
+              <span>Want to check out a different list? </span>
+              <button className="btn mb-2" onClick={removeListFromStorage}>Click here</button>
+            </>
+			<div id="legend">
+				<h3 className="h3 pt-2 pb-3">Purchase Again?</h3>
+				<div className="grid grid-rows-2 gap-6">
+					<ul className="grid grid-cols-5">
+						<li className="col-span-1">
+							<span className="legendIcon inline-block">S</span>
+							<span className="inline-block">Soon!</span>
+						</li>
+						<li className="col-span-2">
+							<span className="legendIcon inline-block">KS</span>
+							<span className="inline-block">You got a bit of time!</span>
+						</li>
+						<li className="col-span-2">
+							<span className="legendIcon inline-block">NS</span>
+							<span className="inline-block">Not for a while!</span>
+						</li>
+					</ul>
+					<ul className="grid grid-cols-5">
+						<li className="col-span-1">
+							<span className="legendIcon inline-block">I</span>
+							<span className="inline-block">Inactive!</span>
+						</li>
+						<li className="col-span-2">
+							<span className="legendIcon inline-block">NP</span>
+							<span className="inline-block">Not Yet Purchased!</span>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</>
 	);
 }

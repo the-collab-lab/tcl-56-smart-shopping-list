@@ -27,6 +27,7 @@ describe('transforms a firestore object into a javascript date object', () => {
 });
 
 // Tests for getDaysBetweenDates function
+
 describe('calculates days between dates correctly', () => {
 	it('given two consecutive dates, then one day is returned', () => {
 		let date1 = new Date('2023-01-01');
@@ -43,7 +44,8 @@ describe('calculates days between dates correctly', () => {
 	});
 });
 
-// tests for getNextPurchaseDate function
+// Tests for getNextPurchaseDate function
+
 describe('calculates the next day to purchase an item and returns a new date', () => {
 	const getNextDate = (daysToAdd) => {
 		const today = new Date();
@@ -67,16 +69,17 @@ describe('calculates the next day to purchase an item and returns a new date', (
 	});
 });
 
+// Tests for getFutureDate function
 describe('getFutureDate', () => {
 	const ONE_DAY_IN_MILLISECONDS = 86400000;
 	const newDateOffsetByNum = (num) =>
 		new Date(Date.now() + num * ONE_DAY_IN_MILLISECONDS);
 
 	it('receives a number of days and returns a date offset by that many days', () => {
-		expect(getFutureDate(3)).toEqual(newDateOffsetByNum(3));
+		expect(getFutureDate(3).date).toEqual(newDateOffsetByNum(3).date);
 	});
 
 	it('returns 1 day in the future if 0 days are passed', () => {
-		expect(getFutureDate(0)).toEqual(newDateOffsetByNum(0));
+		expect(getFutureDate(0).date).toEqual(newDateOffsetByNum(0).date);
 	});
 });
