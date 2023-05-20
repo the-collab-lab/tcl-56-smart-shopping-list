@@ -20,20 +20,27 @@ export function Home({ makeNewList, joinList, handleError, joinListErrorMsg }) {
 
 	return (
 		<div className="Home">
-			<p>
+			<p className="h3 pt-10">
 				Hello from the home (<code>/</code>) page!
 			</p>
 			{handleError ? <span>{handleError}</span> : null}
-			<button onClick={handleClick}>Create a new list!</button>
-
+			<button className="btn mt-4 mb-4" onClick={handleClick}>
+				Create a new list!
+			</button>
+			<div className="p-6 text-4xl text-center">-OR-</div>
 			<div className="JoinListForm">
-				<p>Join an existing shopping list by entering a three word token.</p>
+				<p className="text-2xl">
+					Join an existing shopping list by entering a three word token.
+				</p>
 				{joinListErrorMsg ? <span>{joinListErrorMsg}</span> : null}
 				<form onSubmit={handleJoinList}>
-					<label htmlFor="input">Share token</label>
+					<label className="text-2xl font-medium" htmlFor="input">
+						Share token:
+					</label>
 					<input
 						name="input"
 						id="input"
+						className="inputField"
 						type="text"
 						value={inputValue}
 						onChange={(event) => setInputValue(event.target.value)}
@@ -46,7 +53,9 @@ export function Home({ makeNewList, joinList, handleError, joinListErrorMsg }) {
 						onInput={(e) => e.target.setCustomValidity('')}
 						required
 					/>
-					<button type="submit">Join an existing list</button>
+					<button className="btn" type="submit">
+						Join an existing list
+					</button>
 				</form>
 			</div>
 		</div>

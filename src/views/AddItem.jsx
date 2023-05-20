@@ -45,25 +45,31 @@ export function AddItem({ data, listId }) {
 	return (
 		<>
 			<form onSubmit={onFormSubmit}>
-				<div>
-					<label htmlFor="item">Item name:</label>
+				<div className="pt-6">
+					<label className="h3" htmlFor="item">
+						Item Name:
+					</label>
 				</div>
 				<input
 					type="text"
 					name="item"
 					id="item"
+					className="inputField"
 					required
 					value={itemData.itemName}
 					onChange={onChange}
 				/>
 				<div>
 					<fieldset>
-						<legend>How soon will you buy this agin?</legend>
-						<div>
-							<label htmlFor="soon">
+						<legend className="text-3xl pt-4 pb-4">
+							How soon will you buy this agin?
+						</legend>
+						<div className="pb-4">
+							<label htmlFor="soon" className="text-2xl">
 								<input
 									type="radio"
 									id="soon"
+									className="mr-4"
 									name="daysTillNextPurchase"
 									value="7"
 									onChange={onChange}
@@ -72,11 +78,12 @@ export function AddItem({ data, listId }) {
 								Soon
 							</label>
 						</div>
-						<div>
-							<label htmlFor="kindaSoon">
+						<div className="pb-4">
+							<label htmlFor="kindaSoon" className="text-2xl">
 								<input
 									type="radio"
 									id="kindaSoon"
+									className="mr-4"
 									name="daysTillNextPurchase"
 									value="14"
 									onChange={onChange}
@@ -85,11 +92,12 @@ export function AddItem({ data, listId }) {
 								Kinda Soon
 							</label>
 						</div>
-						<div>
-							<label htmlFor="notSoon">
+						<div className="pb-4">
+							<label htmlFor="notSoon" className="text-2xl">
 								<input
 									type="radio"
 									id="notSoon"
+									className="mr-4"
 									name="daysTillNextPurchase"
 									value="30"
 									onChange={onChange}
@@ -100,7 +108,9 @@ export function AddItem({ data, listId }) {
 						</div>
 					</fieldset>
 				</div>
-				<button type="submit">Add Item</button>
+				<button className="btn mt-4" type="submit">
+					Add Item
+				</button>
 			</form>
 			<p>{submitMessage}</p>
 		</>

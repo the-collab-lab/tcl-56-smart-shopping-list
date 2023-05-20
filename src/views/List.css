@@ -1,26 +1,34 @@
+#itemList {
+	height: 300px;
+	overflow: hidden;
+	overflow-y: scroll;
+}
+
 #chippy {
-	height: 150px;
-	position: fixed;
+	height: 100px;
+	/* position: fixed;
 	bottom: 100px;
-	right: 15%;
+	right: 15%; */
 }
 
 .chippy-suggestion {
-	position: fixed;
+	/* position: fixed; */
 	font-family: sans-serif;
-	font-size: 18px;
+	/* font-size: 18px; */
+	font-size: 1.5rem;
 	line-height: 24px;
-	width: 300px;
+	/* width: 50%; */
 	background: #2b90ca;
 	border-radius: 40px;
-	padding: 24px;
-	text-align: center;
+	/* padding: 24px; */
+	padding: 5%;
+	text-align: left;
 	color: #fff;
 	bottom: 300px;
 	right: 15%;
 }
 
-.chippy-suggestion-bottom-right:before {
+/* .chippy-suggestion-bottom-right:before {
 	content: '';
 	width: 0px;
 	height: 0px;
@@ -31,4 +39,4 @@
 	border-bottom: 20px solid transparent;
 	left: 200px;
 	bottom: -24px;
-}
+} */

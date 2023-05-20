@@ -66,7 +66,9 @@ body {
 	color: var(--color-text);
 	font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui,
 		helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
-	font-size: 1.6rem;
+	/* font-size: 1.6rem;
+	line-height: 1.4; */
+	font-size: 1.4rem;
 	line-height: 1.4;
 	margin: 0;
 
@@ -100,4 +102,28 @@ code {
 
 ul {
 	padding: 0;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn {
+	@apply bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded;
+}
+
+.btn-delete {
+	@apply bg-red-500  hover:bg-transparent text-white font-semibold hover:text-red-500 py-2 px-6 border hover:border-red-500 rounded;
+}
+
+.inputField {
+	@apply shadow appearance-none border border-gray-500 rounded w-8/12 py-2 px-3 text-gray-700 m-2 leading-tight focus:outline-none;
+}
+
+.h3 {
+	@apply text-3xl font-semibold;
+}
+
+.legendIcon {
+	@apply border-2 text-center mr-2 border-gray-400 rounded-md h-11 w-12 bg-gray-500 text-white;
 }

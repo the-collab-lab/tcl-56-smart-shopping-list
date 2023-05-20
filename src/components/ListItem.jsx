@@ -7,7 +7,6 @@ import {
 } from '../utils';
 import { deleteItem } from '../api/firebase';
 
-
 export function ListItem({ item, listId }) {
 	const [checked, setChecked] = useState(false);
 	const [deleteError, setDeleteError] = useState('');
@@ -41,38 +40,53 @@ export function ListItem({ item, listId }) {
 
 	const purchaseUrgencyMessage = (item) => {
 		if (getItemDaysUntilNextPurchase(item) <= 7) {
-			return 'Soon!';
+			return 'S';
 		} else if (
 			getItemDaysUntilNextPurchase(item) > 7 &&
 			getItemDaysUntilNextPurchase(item) < 30
 		) {
-			return "You've got a bit of time";
+			return 'KS';
 		} else if (
 			getItemDaysUntilNextPurchase(item) >= 30 &&
 			getItemDaysSinceLastPurchase(item) < 60
 		) {
-			return 'Not for a while';
+			return 'NS';
 		} else if (getItemDaysSinceLastPurchase(item) > 60) {
-			return "You don't seem to be buying this anymore";
+			return 'I';
 		} else {
-			return "You haven't purchased this item yet!";
+			return 'NP';
 		}
 	};
 
 	return (
 		<li className="ListItem">
-			<label htmlFor={item.id}>
+			<div className="grid grid-cols-10 mb-3 items-center">
+				<li className="col-span-1 legendIcon">
+					{purchaseUrgencyMessage(item)}
+				</li>
+				<label className="col-span-7" htmlFor={item.id}>
+					{item.name} {deleteError}
+				</label>
 				{checked ? (
-					<input type="checkbox" id={item.id} onChange={checkItem} checked />
+					<input
+						className="col-span-1 w-8 h-8"
+						type="checkbox"
+						id={item.id}
+						onChange={checkItem}
+						checked
+					/>
 				) : (
-					<input type="checkbox" id={item.id} onChange={checkItem} />
+					<input
+						className="col-span-1 w-8 h-8"
+						type="checkbox"
+						id={item.id}
+						onChange={checkItem}
+					/>
 				)}
-				{item.name} {deleteError}
-			</label>
-
-			<li>Purchase again: {purchaseUrgencyMessage(item)}</li>
-			<br></br>
-			<button onClick={handleDelete}>Delete</button>
+				<button className="btn-delete col-span-1" onClick={handleDelete}>
+					X
+				</button>
+			</div>
 		</li>
 	);
 }

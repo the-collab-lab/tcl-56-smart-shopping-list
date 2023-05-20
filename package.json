@@ -18,6 +18,7 @@
 		"@testing-library/react": "^14.0.0",
 		"@testing-library/user-event": "^14.4.3",
 		"@vitejs/plugin-react": "^3.1.0",
+		"autoprefixer": "^10.4.14",
 		"eslint": "^8.37.0",
 		"eslint-config-prettier": "^8.8.0",
 		"eslint-config-react-app": "^7.0.1",
@@ -25,7 +26,9 @@
 		"husky": "^8.0.3",
 		"jsdom": "^21.1.1",
 		"lint-staged": "^13.2.0",
+		"postcss": "^8.4.23",
 		"prettier": "^2.8.7",
+		"tailwindcss": "^3.3.2",
 		"vite": "^4.2.1",
 		"vite-plugin-pwa": "^0.14.7",
 		"vite-plugin-svgr": "^2.4.0",
@@ -34,6 +37,7 @@
 	"scripts": {
 		"start": "vite",
 		"build": "vite build",
+		"build-css": "tailwindcss build src/index.css -o public/index.css",
 		"test": "vitest",
 		"preview": "vite preview",
 		"prepare": "husky install"
