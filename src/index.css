@@ -109,7 +109,7 @@ ul {
 @tailwind utilities;
 
 .btn {
-	@apply bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-2 border border-blue-500 hover:border-transparent rounded;
+	@apply bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded;
 }
 
 .btn-delete {
@@ -121,9 +121,9 @@ ul {
 }
 
 .h3 {
-	@apply text-2xl font-semibold;
+	@apply text-3xl font-semibold;
 }
 
 .legendIcon {
-	@apply border-2 text-center mr-2 border-gray-400 rounded-md h-11 w-12;
+	@apply border-2 text-center mr-2 border-gray-400 rounded-md h-11 w-12 bg-gray-500 text-white;
 }

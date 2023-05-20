@@ -40,25 +40,20 @@ export function ListItem({ item, listId }) {
 
 	const purchaseUrgencyMessage = (item) => {
 		if (getItemDaysUntilNextPurchase(item) <= 7) {
-			// return 'Soon!';
 			return 'S';
 		} else if (
 			getItemDaysUntilNextPurchase(item) > 7 &&
 			getItemDaysUntilNextPurchase(item) < 30
 		) {
-			// return "You've got a bit of time";
 			return 'KS';
 		} else if (
 			getItemDaysUntilNextPurchase(item) >= 30 &&
 			getItemDaysSinceLastPurchase(item) < 60
 		) {
-			// return 'Not for a while';
 			return 'NS';
 		} else if (getItemDaysSinceLastPurchase(item) > 60) {
-			// return "You don't seem to be buying this anymore";
 			return 'I';
 		} else {
-			// return "You haven't purchased this item yet!";
 			return 'NP';
 		}
 	};
@@ -66,7 +61,7 @@ export function ListItem({ item, listId }) {
 	return (
 		<li className="ListItem">
 			<div className="grid grid-cols-10 mb-3 items-center">
-				<li className="col-span-1 border-2 text-center mr-2 border-gray-400 rounded-md h-11 w-12">
+				<li className="col-span-1 legendIcon">
 					{purchaseUrgencyMessage(item)}
 				</li>
 				<label className="col-span-7" htmlFor={item.id}>
