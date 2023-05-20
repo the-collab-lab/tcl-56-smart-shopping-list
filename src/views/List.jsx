@@ -1,6 +1,7 @@
 import { ListItem } from '../components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { comparePurchaseUrgency } from '../utils/items';
 import Chippy3 from '/img/Chippy3.gif';
 import './List.css';
@@ -8,27 +9,40 @@ import './List.css';
 export function List({ data, listId }) {
 	// creates a state variable to track searchbar input
 	const [query, setQuery] = useState('');
+	const [listName, setListName] = useState('');
 
 	// sets the state to the searchbar input as the user types
 	const handleSearch = (e) => {
 		setQuery(e.target.value);
 	};
-
 	// clears the searchbar and resets the filtered list to the whole list
 	const clearFilter = (e) => {
 		setQuery('');
 	};
-
 	const navigate = useNavigate();
+
+	const removeListFromStorage = () => {
+		//remove list from local storage
+		localStorage.removeItem('tcl-shopping-list-token');
+		// refresh page to force redirect to home page
+		window.location.reload();
+	};
+
+	useEffect(() => {
+		if (!listId) {
+			navigate('/');
+		}
+		const listName = localStorage.getItem('tcl-shopping-list-token');
+		setListName(listName);
+	}, [listName, listId, navigate]);
 
 	return (
 		<>
-			{/* <p>Welcome to your shopping list!</p> */}
 			<div id="chippyBox" className="grid grid-cols-3 pt-6">
 				<div className="chippy-suggestion chippy-suggestion-bottom-right col-span-2">
-					{data.length < 2
-						? 'Uh oh! Your shopping list is empty! Try using the "Add Item" button to begin your list!'
-						: 'Yummy! That list is looking good! Did you know that you can use the filter to search within your list?'}{' '}
+					{data.length < 1
+						? `Uh oh! ${listName} list is empty! Try using the "Add Item" button to begin your list!`
+						: `Yummy! That list is looking good! Did you know that you can use the filter to search within ${listName}?`}
 				</div>
 				<img
 					id="chippy"
@@ -79,6 +93,10 @@ export function List({ data, listId }) {
 						})}
 				</ul>
 			</div>
+						<>
+              <span>Want to check out a different list? </span>
+              <button className="btn mb-2" onClick={removeListFromStorage}>Click here</button>
+            </>
 			<div id="legend">
 				<h3 className="h3 pt-2 pb-3">Purchase Again?</h3>
 				<div className="grid grid-rows-2 gap-6">

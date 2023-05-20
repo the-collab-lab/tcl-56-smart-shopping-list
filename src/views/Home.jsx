@@ -1,12 +1,14 @@
 import { useState } from 'react';
-import { generateToken } from '@the-collab-lab/shopping-list-utils';
+// import { generateToken } from '@the-collab-lab/shopping-list-utils';
 import './Home.css';
 
 export function Home({ makeNewList, joinList, handleError, joinListErrorMsg }) {
 	const [inputValue, setInputValue] = useState('');
+	const [listName, setListName] = useState('');
 
-	const handleClick = () => {
-		const newToken = generateToken();
+	const handleClick = (event) => {
+		event.preventDefault();
+		const newToken = listName.trim().toLowerCase();
 		makeNewList(newToken);
 	};
 	/**
@@ -21,21 +23,32 @@ export function Home({ makeNewList, joinList, handleError, joinListErrorMsg }) {
 	return (
 		<div className="Home">
 			<p className="h3 pt-10">
-				Hello from the home (<code>/</code>) page!
+				To create a new shopping list, give your list a name.
 			</p>
 			{handleError ? <span>{handleError}</span> : null}
-			<button className="btn mt-4 mb-4" onClick={handleClick}>
-				Create a new list!
-			</button>
+      <form onSubmit={handleClick}>
+				<label className="text-2xl font-medium" htmlFor="listName">List name </label>
+				<input
+					type="text"
+					name="listName"
+					id="listName"
+					className="inputField"
+					required
+					value={listName}
+					onChange={(e) => setListName(e.target.value)}
+					pattern="[a-zA-Z0-9\s]+"
+				/>
+				<button className="btn mt-4 mb-4" type="submit">Create a new list!</button>
+			</form> 
 			<div className="p-6 text-4xl text-center">-OR-</div>
 			<div className="JoinListForm">
 				<p className="text-2xl">
-					Join an existing shopping list by entering a three word token.
+					Join an existing shopping list by entering a list name.
 				</p>
 				{joinListErrorMsg ? <span>{joinListErrorMsg}</span> : null}
 				<form onSubmit={handleJoinList}>
 					<label className="text-2xl font-medium" htmlFor="input">
-						Share token:
+						Share list name:
 					</label>
 					<input
 						name="input"
@@ -44,14 +57,14 @@ export function Home({ makeNewList, joinList, handleError, joinListErrorMsg }) {
 						type="text"
 						value={inputValue}
 						onChange={(event) => setInputValue(event.target.value)}
-						pattern="[a-zA-Z]+ [a-zA-Z]+ [a-zA-Z]+"
-						onInvalid={(e) =>
-							e.target.setCustomValidity(
-								'Please enter 3 words with single space only.',
-							)
-						}
-						onInput={(e) => e.target.setCustomValidity('')}
+						pattern="[a-zA-Z0-9\s]+"
 						required
+						// onInvalid={(e) =>
+						// 	e.target.setCustomValidity(
+						// 		'Please enter a valid list name i.e no numbers.',
+						// 	)
+						// }
+						// onInput={(e) => e.target.setCustomValidity('')}
 					/>
 					<button className="btn" type="submit">
 						Join an existing list

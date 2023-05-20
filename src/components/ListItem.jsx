@@ -61,9 +61,9 @@ export function ListItem({ item, listId }) {
 	return (
 		<li className="ListItem">
 			<div className="grid grid-cols-10 mb-3 items-center">
-				<li className="col-span-1 legendIcon">
+				<span className="col-span-1 legendIcon">
 					{purchaseUrgencyMessage(item)}
-				</li>
+				</span>
 				<label className="col-span-7" htmlFor={item.id}>
 					{item.name} {deleteError}
 				</label>
