@@ -38,7 +38,7 @@ export function List({ data, listId }) {
 
 	return (
 		<>
-			<div id="chippyBox" className="grid grid-cols-3 pt-6">
+			<div id="chippyBox" className="grid grid-cols-3 pt-5">
 				<div className="chippy-suggestion chippy-suggestion-bottom-right col-span-2">
 					{data.length < 1
 						? `Uh oh! ${listName} list is empty! Try using the "Add Item" button to begin your list!`
@@ -50,9 +50,13 @@ export function List({ data, listId }) {
 					alt='Helpful potato chip gif named Chippy, à la "Clippy", who suggests that user adds an item to their shopping list '
 				></img>
 			</div>
-			<div id="searchList" className="m-2 pt-6">
+			<div id="listMods" className="m-2 pt-2">
+				<span className="text-2xl">Want to check out a different list? </span>
+				<button className="btn mr-12" onClick={removeListFromStorage}>
+					Click here
+				</button>
 				<button
-					className="btn mb-2"
+					className="btn"
 					onClick={() => {
 						navigate('/add-item');
 					}}
@@ -93,13 +97,9 @@ export function List({ data, listId }) {
 						})}
 				</ul>
 			</div>
-						<>
-              <span>Want to check out a different list? </span>
-              <button className="btn mb-2" onClick={removeListFromStorage}>Click here</button>
-            </>
 			<div id="legend">
 				<h3 className="h3 pt-2 pb-3">Purchase Again?</h3>
-				<div className="grid grid-rows-2 gap-6">
+				<div className="grid grid-rows-2 gap-5">
 					<ul className="grid grid-cols-5">
 						<li className="col-span-1">
 							<span className="legendIcon inline-block">S</span>
