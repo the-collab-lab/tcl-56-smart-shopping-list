@@ -32,7 +32,7 @@ export function transformToJSDate(date) {
 export function getDaysBetweenDates(startDate, endDate) {
 	let timeDifference = endDate?.getTime() - startDate?.getTime();
 	let totalDays = Math.abs(timeDifference / ONE_DAY_IN_MILLISECONDS);
-	return Math.floor(totalDays);
+	return Math.ceil(totalDays);
 }
 /**
  * Receives a whole number of days that is estimated from calculateEstimate function
