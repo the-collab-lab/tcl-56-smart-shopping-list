@@ -1,6 +1,7 @@
 import { useState } from 'react';
 // import { generateToken } from '@the-collab-lab/shopping-list-utils';
 import './Home.css';
+import { Chippy } from './Chippy';
 
 export function Home({ makeNewList, joinList, handleError, joinListErrorMsg }) {
 	const [inputValue, setInputValue] = useState('');
@@ -22,12 +23,23 @@ export function Home({ makeNewList, joinList, handleError, joinListErrorMsg }) {
 
 	return (
 		<div className="Home">
+			<Chippy
+				message={
+					joinListErrorMsg ? (
+						<span>{joinListErrorMsg}</span>
+					) : (
+						'Create your own list or join an existing one!'
+					)
+				}
+			/>
 			<p className="h3 pt-10">
 				To create a new shopping list, give your list a name.
 			</p>
 			{handleError ? <span>{handleError}</span> : null}
-      <form onSubmit={handleClick}>
-				<label className="text-2xl font-medium" htmlFor="listName">List name </label>
+			<form onSubmit={handleClick}>
+				<label className="text-2xl font-medium" htmlFor="listName">
+					List name{' '}
+				</label>
 				<input
 					type="text"
 					name="listName"
@@ -38,14 +50,15 @@ export function Home({ makeNewList, joinList, handleError, joinListErrorMsg }) {
 					onChange={(e) => setListName(e.target.value)}
 					pattern="[a-zA-Z0-9\s]+"
 				/>
-				<button className="btn mt-4 mb-4" type="submit">Create a new list!</button>
-			</form> 
+				<button className="btn mt-4 mb-4" type="submit">
+					Create a new list!
+				</button>
+			</form>
 			<div className="p-6 text-4xl text-center">-OR-</div>
 			<div className="JoinListForm">
-				<p className="text-2xl">
+				<p className="h3">
 					Join an existing shopping list by entering a list name.
 				</p>
-				{joinListErrorMsg ? <span>{joinListErrorMsg}</span> : null}
 				<form onSubmit={handleJoinList}>
 					<label className="text-2xl font-medium" htmlFor="input">
 						Share list name:
