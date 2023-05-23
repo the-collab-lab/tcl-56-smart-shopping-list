@@ -93,10 +93,12 @@ export function List({ data, listId }) {
 						})}
 				</ul>
 			</div>
-						<>
-              <span>Want to check out a different list? </span>
-              <button className="btn mb-2" onClick={removeListFromStorage}>Click here</button>
-            </>
+			<>
+				<span>Want to check out a different list? </span>
+				<button className="btn mb-2" onClick={removeListFromStorage}>
+					Click here
+				</button>
+			</>
 			<div id="legend">
 				<h3 className="h3 pt-2 pb-3">Purchase Again?</h3>
 				<div className="grid grid-rows-2 gap-6">
@@ -118,10 +120,6 @@ export function List({ data, listId }) {
 						<li className="col-span-1">
 							<span className="legendIcon inline-block">I</span>
 							<span className="inline-block">Inactive!</span>
-						</li>
-						<li className="col-span-2">
-							<span className="legendIcon inline-block">NP</span>
-							<span className="inline-block">Not Yet Purchased!</span>
 						</li>
 					</ul>
 				</div>
