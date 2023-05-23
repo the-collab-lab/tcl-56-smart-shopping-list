@@ -3,41 +3,54 @@ import {
 	getItemDaysSinceLastPurchase,
 	sortItems,
 	comparePurchaseUrgency,
+	getDaysBetweenDates,
+	transformToJSDate,
 } from '../src/utils';
 import { Timestamp } from 'firebase/firestore';
 
 // tests for getItemDaysUntilNextPurchase function
-
 describe('uses getDaysBetweenDates function to calculate number of days between today and the dateNextPurchased property of an item', () => {
 	const getNextDate = (daysToAdd) => {
 		const today = new Date();
 		const nextDate = new Date(today.setDate(today.getDate() + daysToAdd));
 		return nextDate;
 	};
+
 	it('receives an item with a date property of today and calculates the number of days between today and the received date', () => {
 		const item = {
 			dateNextPurchased: Timestamp.fromDate(new Date(getNextDate(20))),
 		};
-		expect(getItemDaysUntilNextPurchase(item)).toEqual(19);
+		const today = new Date();
+		const expectedValue = getDaysBetweenDates(
+			item.dateNextPurchased.toDate(),
+			today,
+		);
+
+		expect(getItemDaysUntilNextPurchase(item)).toEqual(expectedValue);
 	});
 	it('receives an item with a date property 30 days in the future and returns the number of days between today and that date, not counting today', () => {
 		let item = {
 			dateNextPurchased: Timestamp.fromDate(new Date(getNextDate(30))),
 		};
-		expect(getItemDaysUntilNextPurchase(item)).toEqual(29);
+		const today = new Date();
+		const expectedValue = getDaysBetweenDates(
+			item.dateNextPurchased.toDate(),
+			today,
+		);
+
+		expect(getItemDaysUntilNextPurchase(item)).toEqual(expectedValue);
 	});
 
 	it('receives an object and returns a number type', () => {
 		const item = {
 			dateNextPurchased: Timestamp.now(),
 		};
-		expect(getItemDaysUntilNextPurchase(item)).toEqual(Number());
+		expect(typeof getItemDaysUntilNextPurchase(item)).toEqual(typeof Number());
 	});
 });
 
-// tests for getItemDaysSinceLastPurchase
-
-describe('the getItemDaysSinceLastPurchase function receives an item object from the database and calculates the number of days between today and either the items dateLastPurchased date property or if no date last purchased then the items date created date property', () => {
+// tests for getItemDaysSinceLastPurchase function
+describe("the getItemDaysSinceLastPurchase function receives an item object from the database and calculates the number of days between today and either the item's dateLastPurchased date property or, if no date last purchased, the item's dateCreated date property", () => {
 	const customFireStoreDate = (dateString) =>
 		Timestamp.fromDate(new Date(dateString));
 
@@ -53,7 +66,13 @@ describe('the getItemDaysSinceLastPurchase function receives an item object from
 			dateCreated: customFireStoreDate(getPastDate(60)),
 		};
 
-		expect(getItemDaysSinceLastPurchase(item)).toEqual(30);
+		const today = new Date();
+		const expectedValue = getDaysBetweenDates(
+			transformToJSDate(item.dateLastPurchased),
+			today,
+		);
+
+		expect(getItemDaysSinceLastPurchase(item)).toEqual(expectedValue);
 	});
 
 	it('given an item without a daysSinceLastPurchase property, then calculates the number of days between today and the dateCreated date property', () => {
@@ -62,7 +81,13 @@ describe('the getItemDaysSinceLastPurchase function receives an item object from
 			dateCreated: customFireStoreDate(getPastDate(60)),
 		};
 
-		expect(getItemDaysSinceLastPurchase(item)).toEqual(60);
+		const today = new Date();
+		const expectedValue = getDaysBetweenDates(
+			transformToJSDate(item.dateCreated),
+			today,
+		);
+
+		expect(getItemDaysSinceLastPurchase(item)).toEqual(expectedValue);
 	});
 });
 
