@@ -21,13 +21,13 @@ export function Layout() {
 					<Outlet />
 				</main>
 				<nav className="Nav">
-					<NavLink to="/" className="Nav-link">
+					<NavLink to="/" className="Nav-link underline">
 						Home
 					</NavLink>
-					<NavLink to="/list" className="Nav-link">
+					<NavLink to="/list" className="Nav-link underline">
 						List
 					</NavLink>
-					<NavLink to="/add-item" className="Nav-link">
+					<NavLink to="/add-item" className="Nav-link underline">
 						Add Item
 					</NavLink>
 				</nav>
