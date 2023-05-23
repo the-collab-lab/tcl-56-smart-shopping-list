@@ -1,7 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { addItem } from '../api/firebase';
+import { useNavigate } from 'react-router-dom';
 
 export function AddItem({ data, listId }) {
+	const navigate = useNavigate();
+	useEffect(() => {
+		if (!listId) {
+			navigate('/');
+		}
+	}, [listId, navigate]);
+
 	const [itemData, setItemData] = useState({
 		itemName: '',
 		daysUntilNextPurchase: 7,
