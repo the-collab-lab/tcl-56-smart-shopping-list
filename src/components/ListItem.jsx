@@ -1,10 +1,7 @@
 import { useState, useEffect } from 'react';
 import './ListItem.css';
 import { updateItem } from '../api/firebase';
-import {
-	getItemDaysUntilNextPurchase,
-	getItemDaysSinceLastPurchase,
-} from '../utils';
+import { getDaysBetweenDates, transformToJSDate } from '../utils';
 import { deleteItem } from '../api/firebase';
 
 export function ListItem({ item, listId }) {
@@ -39,22 +36,20 @@ export function ListItem({ item, listId }) {
 	}, [checked, item.dateLastPurchased]);
 
 	const purchaseUrgencyMessage = (item) => {
-		if (getItemDaysUntilNextPurchase(item) <= 7) {
+		const itemDays = getDaysBetweenDates(
+			transformToJSDate(item.dateNextPurchased),
+			new Date(),
+		);
+		const dateLastPurchased = item.dateLastPurchased;
+
+		if (itemDays <= 7) {
 			return 'S';
-		} else if (
-			getItemDaysUntilNextPurchase(item) > 7 &&
-			getItemDaysUntilNextPurchase(item) < 30
-		) {
+		} else if (itemDays > 7 && itemDays < 30) {
 			return 'KS';
-		} else if (
-			getItemDaysUntilNextPurchase(item) >= 30 &&
-			getItemDaysSinceLastPurchase(item) < 60
-		) {
+		} else if (itemDays >= 30 && itemDays < 60) {
 			return 'NS';
-		} else if (getItemDaysSinceLastPurchase(item) > 60) {
+		} else if (itemDays > 60 && !dateLastPurchased) {
 			return 'I';
-		} else {
-			return 'NP';
 		}
 	};
 

@@ -114,10 +114,6 @@ export function List({ data, listId }) {
 							<span className="legendIcon inline-block">I</span>
 							<span className="inline-block">Inactive!</span>
 						</li>
-						<li className="col-span-3">
-							<span className="legendIcon inline-block">NP</span>
-							<span className="inline-block">Not Yet Purchased!</span>
-						</li>
 					</ul>
 				</div>
 			</div>
