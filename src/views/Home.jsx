@@ -22,7 +22,7 @@ export function Home({ makeNewList, joinList, handleError, joinListErrorMsg }) {
 
 	return (
 		<div className="Home">
-			<p className="h3 pt-10">
+			<p className="h3 font-lato pt-10">
 				To create a new shopping list, give your list a name.
 			</p>
 			{handleError ? <span>{handleError}</span> : null}
