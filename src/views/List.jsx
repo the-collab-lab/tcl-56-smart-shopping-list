@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { comparePurchaseUrgency } from '../utils/items';
-import Chippy3 from '/img/Chippy3.gif';
+import { Chippy } from './Chippy';
 import './List.css';
 
 export function List({ data, listId }) {
@@ -38,18 +38,13 @@ export function List({ data, listId }) {
 
 	return (
 		<>
-			<div id="chippyBox" className="grid grid-cols-3 pt-5">
-				<div className="chippy-suggestion chippy-suggestion-bottom-right col-span-2">
-					{data.length < 1
+			<Chippy
+				message={
+					data.length < 1
 						? `Uh oh! ${listName} list is empty! Try using the "Add Item" button to begin your list!`
-						: `Yummy! That list is looking good! Did you know that you can use the filter to search within ${listName}?`}
-				</div>
-				<img
-					id="chippy"
-					src={Chippy3}
-					alt='Helpful potato chip gif named Chippy, à la "Clippy", who suggests that user adds an item to their shopping list '
-				></img>
-			</div>
+						: `Yummy! That list is looking good! Did you know that you can use the filter to search within ${listName}?`
+				}
+			/>
 			<div id="listMods" className="m-2 pt-2">
 				<span className="text-2xl">Want to check out a different list? </span>
 				<button className="btn mr-12" onClick={removeListFromStorage}>

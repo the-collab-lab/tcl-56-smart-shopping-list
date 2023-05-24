@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { addItem } from '../api/firebase';
 import { useNavigate } from 'react-router-dom';
+import { Chippy } from './Chippy';
 
 export function AddItem({ data, listId }) {
 	const navigate = useNavigate();
@@ -56,6 +57,13 @@ export function AddItem({ data, listId }) {
 
 	return (
 		<>
+			<Chippy
+				message={
+					submitMessage === ''
+						? 'Please add an item to your list!'
+						: submitMessage
+				}
+			/>
 			<form onSubmit={onFormSubmit}>
 				<div className="pt-6">
 					<label className="h3 font-lato" htmlFor="item">
@@ -124,7 +132,6 @@ export function AddItem({ data, listId }) {
 					Add Item
 				</button>
 			</form>
-			<p>{submitMessage}</p>
 		</>
 	);
 }

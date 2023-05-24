@@ -1,6 +1,7 @@
 import { useState } from 'react';
 // import { generateToken } from '@the-collab-lab/shopping-list-utils';
 import './Home.css';
+import { Chippy } from './Chippy';
 
 export function Home({ makeNewList, joinList, handleError, joinListErrorMsg }) {
 	const [inputValue, setInputValue] = useState('');
@@ -22,6 +23,15 @@ export function Home({ makeNewList, joinList, handleError, joinListErrorMsg }) {
 
 	return (
 		<div className="Home">
+			<Chippy
+				message={
+					joinListErrorMsg ? (
+						<span>{joinListErrorMsg}</span>
+					) : (
+						'Create your own list or join an existing one!'
+					)
+				}
+			/>
 			<p className="h3 font-lato pt-10">
 				To create a new shopping list, give your list a name.
 			</p>
@@ -49,7 +59,6 @@ export function Home({ makeNewList, joinList, handleError, joinListErrorMsg }) {
 				<p className="h3 font-lato">
 					Join an existing shopping list by entering a list name.
 				</p>
-				{joinListErrorMsg ? <span>{joinListErrorMsg}</span> : null}
 				<form onSubmit={handleJoinList}>
 					<label className="text-2xl font-medium" htmlFor="input">
 						Share list name:
@@ -63,12 +72,6 @@ export function Home({ makeNewList, joinList, handleError, joinListErrorMsg }) {
 						onChange={(event) => setInputValue(event.target.value)}
 						pattern="[a-zA-Z0-9\s]+"
 						required
-						// onInvalid={(e) =>
-						// 	e.target.setCustomValidity(
-						// 		'Please enter a valid list name i.e no numbers.',
-						// 	)
-						// }
-						// onInput={(e) => e.target.setCustomValidity('')}
 					/>
 					<button className="btn" type="submit">
 						Join an existing list
