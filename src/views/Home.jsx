@@ -32,7 +32,7 @@ export function Home({ makeNewList, joinList, handleError, joinListErrorMsg }) {
 					)
 				}
 			/>
-			<p className="h3 pt-10">
+			<p className="h3 font-lato pt-10">
 				To create a new shopping list, give your list a name.
 			</p>
 			{handleError ? <span>{handleError}</span> : null}
@@ -56,7 +56,7 @@ export function Home({ makeNewList, joinList, handleError, joinListErrorMsg }) {
 			</form>
 			<div className="p-6 text-4xl text-center">-OR-</div>
 			<div className="JoinListForm">
-				<p className="h3">
+				<p className="h3 font-lato">
 					Join an existing shopping list by entering a list name.
 				</p>
 				<form onSubmit={handleJoinList}>
@@ -72,12 +72,6 @@ export function Home({ makeNewList, joinList, handleError, joinListErrorMsg }) {
 						onChange={(event) => setInputValue(event.target.value)}
 						pattern="[a-zA-Z0-9\s]+"
 						required
-						// onInvalid={(e) =>
-						// 	e.target.setCustomValidity(
-						// 		'Please enter a valid list name i.e no numbers.',
-						// 	)
-						// }
-						// onInput={(e) => e.target.setCustomValidity('')}
 					/>
 					<button className="btn" type="submit">
 						Join an existing list
