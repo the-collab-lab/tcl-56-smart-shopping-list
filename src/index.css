@@ -21,7 +21,8 @@
 		--color-accent: var(--color-cobalt-blue);
 		--color-bg: var(--color-white);
 		--color-bg-well: var(--color-gray-light);
-		--color-text: var(--color-black);
+		/* --color-text: var(--color-black); */
+		--color-text: var(--color-cobalt-blue);
 	}
 }
 
@@ -64,14 +65,12 @@ html {
 body {
 	background-color: var(--color-bg);
 	color: var(--color-text);
-	font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui,
-		helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
-	/* font-size: 1.6rem;
-	line-height: 1.4; */
+	font-family: 'Arvo', serif, -apple-system, BlinkMacSystemFont, avenir next,
+		avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial,
+		sans-serif;
 	font-size: 1.4rem;
 	line-height: 1.4;
 	margin: 0;
-
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -121,9 +120,9 @@ ul {
 }
 
 .h3 {
-	@apply text-3xl font-semibold;
+	@apply text-3xl;
 }
 
 .legendIcon {
-	@apply border-2 text-center mr-2 border-gray-400 rounded-md h-11 w-12 bg-gray-500 text-white;
+	@apply text-center mr-2 rounded-md h-11 w-12 bg-blue-400 text-white;
 }

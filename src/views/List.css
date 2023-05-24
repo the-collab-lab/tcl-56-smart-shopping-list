@@ -6,37 +6,17 @@
 
 #chippy {
 	height: 100px;
-	/* position: fixed;
-	bottom: 100px;
-	right: 15%; */
 }
 
 .chippy-suggestion {
-	/* position: fixed; */
-	font-family: sans-serif;
-	/* font-size: 18px; */
+	text-shadow: 1px 1px gray;
 	font-size: 1.5rem;
 	line-height: 24px;
-	/* width: 50%; */
 	background: #2b90ca;
 	border-radius: 40px;
-	/* padding: 24px; */
 	padding: 5%;
 	text-align: left;
 	color: #fff;
 	bottom: 300px;
 	right: 15%;
 }
-
-/* .chippy-suggestion-bottom-right:before {
-	content: '';
-	width: 0px;
-	height: 0px;
-	position: absolute;
-	border-left: 24px solid #2b90ca;
-	border-right: 12px solid transparent;
-	border-top: 12px solid #2b90ca;
-	border-bottom: 20px solid transparent;
-	left: 200px;
-	bottom: -24px;
-} */

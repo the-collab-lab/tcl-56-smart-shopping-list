@@ -1,7 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { addItem } from '../api/firebase';
+import { useNavigate } from 'react-router-dom';
+import { Chippy } from './Chippy';
 
 export function AddItem({ data, listId }) {
+	const navigate = useNavigate();
+	useEffect(() => {
+		if (!listId) {
+			navigate('/');
+		}
+	}, [listId, navigate]);
+
 	const [itemData, setItemData] = useState({
 		itemName: '',
 		daysUntilNextPurchase: 7,
@@ -48,9 +57,16 @@ export function AddItem({ data, listId }) {
 
 	return (
 		<>
+			<Chippy
+				message={
+					submitMessage === ''
+						? 'Please add an item to your list!'
+						: submitMessage
+				}
+			/>
 			<form onSubmit={onFormSubmit}>
 				<div className="pt-6">
-					<label className="h3" htmlFor="item">
+					<label className="h3 font-lato" htmlFor="item">
 						Item Name:
 					</label>
 				</div>
@@ -65,8 +81,8 @@ export function AddItem({ data, listId }) {
 				/>
 				<div>
 					<fieldset>
-						<legend className="text-3xl pt-4 pb-4">
-							How soon will you buy this agin?
+						<legend className="h3 font-lato pt-4 pb-4">
+							How soon will you buy this again?
 						</legend>
 						<div className="pb-4">
 							<label htmlFor="soon" className="text-2xl">
@@ -116,7 +132,6 @@ export function AddItem({ data, listId }) {
 					Add Item
 				</button>
 			</form>
-			<p>{submitMessage}</p>
 		</>
 	);
 }

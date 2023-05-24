@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { comparePurchaseUrgency } from '../utils/items';
-import Chippy3 from '/img/Chippy3.gif';
+import { Chippy } from './Chippy';
 import './List.css';
 
 export function List({ data, listId }) {
@@ -38,21 +38,20 @@ export function List({ data, listId }) {
 
 	return (
 		<>
-			<div id="chippyBox" className="grid grid-cols-3 pt-6">
-				<div className="chippy-suggestion chippy-suggestion-bottom-right col-span-2">
-					{data.length < 1
+			<Chippy
+				message={
+					data.length < 1
 						? `Uh oh! ${listName} list is empty! Try using the "Add Item" button to begin your list!`
-						: `Yummy! That list is looking good! Did you know that you can use the filter to search within ${listName}?`}
-				</div>
-				<img
-					id="chippy"
-					src={Chippy3}
-					alt='Helpful potato chip gif named Chippy, à la "Clippy", who suggests that user adds an item to their shopping list '
-				></img>
-			</div>
-			<div id="searchList" className="m-2 pt-6">
+						: `Yummy! That list is looking good! Did you know that you can use the filter to search within ${listName}?`
+				}
+			/>
+			<div id="listMods" className="m-2 pt-2">
+				<span className="text-2xl">Want to check out a different list? </span>
+				<button className="btn mr-12" onClick={removeListFromStorage}>
+					Click here
+				</button>
 				<button
-					className="btn mb-2"
+					className="btn"
 					onClick={() => {
 						navigate('/add-item');
 					}}
@@ -61,7 +60,7 @@ export function List({ data, listId }) {
 				</button>
 				<form>
 					<label htmlFor="searchbar">
-						<h3 className="h3">Search List</h3>
+						<h3 className="h3 font-lato">Search List</h3>
 						<input
 							type="text"
 							id="searchbar"
@@ -78,7 +77,7 @@ export function List({ data, listId }) {
 			<div id="itemsGroup">
 				<ul className="grid grid-cols-10">
 					<li className="col-span-1"></li>
-					<li className="col-span-7 font-semibold	text-3xl">Item</li>
+					<li className="col-span-7 h3 font-lato">Item</li>
 					<li className="col-span-1"></li>
 					<li className="col-span-1"></li>
 				</ul>
@@ -93,31 +92,25 @@ export function List({ data, listId }) {
 						})}
 				</ul>
 			</div>
-			<>
-				<span>Want to check out a different list? </span>
-				<button className="btn mb-2" onClick={removeListFromStorage}>
-					Click here
-				</button>
-			</>
 			<div id="legend">
-				<h3 className="h3 pt-2 pb-3">Purchase Again?</h3>
-				<div className="grid grid-rows-2 gap-6">
+				<h3 className="h3 font-lato pt-2 pb-3">Purchase Again?</h3>
+				<div className="grid grid-rows-2 gap-5">
 					<ul className="grid grid-cols-5">
-						<li className="col-span-1">
+						<li className="col-span-2">
 							<span className="legendIcon inline-block">S</span>
 							<span className="inline-block">Soon!</span>
 						</li>
 						<li className="col-span-2">
 							<span className="legendIcon inline-block">KS</span>
-							<span className="inline-block">You got a bit of time!</span>
+							<span className="inline-block">Kinda Soon!</span>
 						</li>
-						<li className="col-span-2">
+						<li className="col-span-1">
 							<span className="legendIcon inline-block">NS</span>
-							<span className="inline-block">Not for a while!</span>
+							<span className="inline-block">Not Soon!</span>
 						</li>
 					</ul>
 					<ul className="grid grid-cols-5">
-						<li className="col-span-1">
+						<li className="col-span-2">
 							<span className="legendIcon inline-block">I</span>
 							<span className="inline-block">Inactive!</span>
 						</li>
