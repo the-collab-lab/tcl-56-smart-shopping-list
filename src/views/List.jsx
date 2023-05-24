@@ -65,7 +65,7 @@ export function List({ data, listId }) {
 				</button>
 				<form>
 					<label htmlFor="searchbar">
-						<h3 className="h3">Search List</h3>
+						<h3 className="h3 font-lato">Search List</h3>
 						<input
 							type="text"
 							id="searchbar"
@@ -82,7 +82,7 @@ export function List({ data, listId }) {
 			<div id="itemsGroup">
 				<ul className="grid grid-cols-10">
 					<li className="col-span-1"></li>
-					<li className="col-span-7 font-semibold	text-3xl">Item</li>
+					<li className="col-span-7 h3 font-lato">Item</li>
 					<li className="col-span-1"></li>
 					<li className="col-span-1"></li>
 				</ul>
@@ -98,7 +98,7 @@ export function List({ data, listId }) {
 				</ul>
 			</div>
 			<div id="legend">
-				<h3 className="h3 pt-2 pb-3">Purchase Again?</h3>
+				<h3 className="h3 font-lato pt-2 pb-3">Purchase Again?</h3>
 				<div className="grid grid-rows-2 gap-5">
 					<ul className="grid grid-cols-5">
 						<li className="col-span-1">

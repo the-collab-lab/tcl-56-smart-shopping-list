@@ -15,19 +15,21 @@ export function Layout() {
 		<>
 			<div className="Layout">
 				<header className="Layout-header">
-					<h1 className="lg:text-6xl text-4xl">Smart shopping list</h1>
+					<h1 className="lg:text-6xl text-4xl font-lato">
+						Smart shopping list
+					</h1>
 				</header>
 				<main className="Layout-main">
 					<Outlet />
 				</main>
 				<nav className="Nav">
-					<NavLink to="/" className="Nav-link">
+					<NavLink to="/" className="Nav-link font-bold font-lato">
 						Home
 					</NavLink>
-					<NavLink to="/list" className="Nav-link">
+					<NavLink to="/list" className="Nav-link font-bold font-lato">
 						List
 					</NavLink>
-					<NavLink to="/add-item" className="Nav-link">
+					<NavLink to="/add-item" className="Nav-link font-bold font-lato">
 						Add Item
 					</NavLink>
 				</nav>

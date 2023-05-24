@@ -58,7 +58,7 @@ export function AddItem({ data, listId }) {
 		<>
 			<form onSubmit={onFormSubmit}>
 				<div className="pt-6">
-					<label className="h3" htmlFor="item">
+					<label className="h3 font-lato" htmlFor="item">
 						Item Name:
 					</label>
 				</div>
@@ -73,8 +73,8 @@ export function AddItem({ data, listId }) {
 				/>
 				<div>
 					<fieldset>
-						<legend className="text-3xl pt-4 pb-4">
-							How soon will you buy this agin?
+						<legend className="h3 font-lato pt-4 pb-4">
+							How soon will you buy this again?
 						</legend>
 						<div className="pb-4">
 							<label htmlFor="soon" className="text-2xl">

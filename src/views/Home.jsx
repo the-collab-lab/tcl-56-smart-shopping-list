@@ -26,8 +26,10 @@ export function Home({ makeNewList, joinList, handleError, joinListErrorMsg }) {
 				To create a new shopping list, give your list a name.
 			</p>
 			{handleError ? <span>{handleError}</span> : null}
-      <form onSubmit={handleClick}>
-				<label className="text-2xl font-medium" htmlFor="listName">List name </label>
+			<form onSubmit={handleClick}>
+				<label className="text-2xl font-medium" htmlFor="listName">
+					List name{' '}
+				</label>
 				<input
 					type="text"
 					name="listName"
@@ -38,11 +40,13 @@ export function Home({ makeNewList, joinList, handleError, joinListErrorMsg }) {
 					onChange={(e) => setListName(e.target.value)}
 					pattern="[a-zA-Z0-9\s]+"
 				/>
-				<button className="btn mt-4 mb-4" type="submit">Create a new list!</button>
-			</form> 
+				<button className="btn mt-4 mb-4" type="submit">
+					Create a new list!
+				</button>
+			</form>
 			<div className="p-6 text-4xl text-center">-OR-</div>
 			<div className="JoinListForm">
-				<p className="text-2xl">
+				<p className="h3 font-lato">
 					Join an existing shopping list by entering a list name.
 				</p>
 				{joinListErrorMsg ? <span>{joinListErrorMsg}</span> : null}
