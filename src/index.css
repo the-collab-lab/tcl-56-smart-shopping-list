@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner:wght@600&display=swap');
+
 :root {
 	--color-black: hsla(220, 13%, 18%, 1);
 	--color-gray-dark: hsla(220, 13%, 25%, 1);
@@ -21,7 +23,8 @@
 		--color-accent: var(--color-cobalt-blue);
 		--color-bg: var(--color-white);
 		--color-bg-well: var(--color-gray-light);
-		--color-text: var(--color-black);
+		/* --color-text: var(--color-black); */
+		--color-text: var(--color-cobalt-blue);
 	}
 }
 
@@ -64,10 +67,10 @@ html {
 body {
 	background-color: var(--color-bg);
 	color: var(--color-text);
-	font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui,
-		helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
-	/* font-size: 1.6rem;
-	line-height: 1.4; */
+	font-family: 'Edu VIC WA NT Beginner', cursive, -apple-system,
+		BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica,
+		Ubuntu, roboto, noto, arial, sans-serif;
+	/* font-size: 1.6rem;*/
 	font-size: 1.4rem;
 	line-height: 1.4;
 	margin: 0;
@@ -125,5 +128,5 @@ ul {
 }
 
 .legendIcon {
-	@apply border-2 text-center mr-2 border-gray-400 rounded-md h-11 w-12 bg-gray-500 text-white;
+	@apply text-center mr-2 rounded-md h-11 w-12 bg-blue-400 text-white;
 }
