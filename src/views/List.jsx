@@ -101,25 +101,25 @@ export function List({ data, listId }) {
 				<h3 className="h3 font-lato pt-2 pb-3">Purchase Again?</h3>
 				<div className="grid grid-rows-2 gap-5">
 					<ul className="grid grid-cols-5">
-						<li className="col-span-1">
+						<li className="col-span-2">
 							<span className="legendIcon inline-block">S</span>
 							<span className="inline-block">Soon!</span>
 						</li>
 						<li className="col-span-2">
 							<span className="legendIcon inline-block">KS</span>
-							<span className="inline-block">You got a bit of time!</span>
+							<span className="inline-block">Kinda Soon!</span>
 						</li>
-						<li className="col-span-2">
+						<li className="col-span-1">
 							<span className="legendIcon inline-block">NS</span>
-							<span className="inline-block">Not for a while!</span>
+							<span className="inline-block">Not Soon!</span>
 						</li>
 					</ul>
 					<ul className="grid grid-cols-5">
-						<li className="col-span-1">
+						<li className="col-span-2">
 							<span className="legendIcon inline-block">I</span>
 							<span className="inline-block">Inactive!</span>
 						</li>
-						<li className="col-span-2">
+						<li className="col-span-3">
 							<span className="legendIcon inline-block">NP</span>
 							<span className="inline-block">Not Yet Purchased!</span>
 						</li>
