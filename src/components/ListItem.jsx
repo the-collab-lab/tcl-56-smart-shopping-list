@@ -36,13 +36,19 @@ export function ListItem({ item, listId }) {
 	}, [checked, item.dateLastPurchased]);
 
 	const purchaseUrgencyMessage = (item) => {
+		const dateLastPurchased = item.dateLastPurchased
+			? item.dateLastPurchased
+			: item.dateCreated;
+
 		const itemDays = getDaysBetweenDates(
 			transformToJSDate(item.dateNextPurchased),
 			new Date(),
 		);
-		const dateLastPurchased = item.dateLastPurchased
-			? item.dateLastPurchased
-			: item.dateCreated;
+
+		const itemDaysSinceLastPurchased = getDaysBetweenDates(
+			transformToJSDate(dateLastPurchased),
+			new Date(),
+		);
 
 		if (itemDays <= 7) {
 			return 'S';
@@ -50,7 +56,7 @@ export function ListItem({ item, listId }) {
 			return 'KS';
 		} else if (itemDays >= 30 && itemDays < 60) {
 			return 'NS';
-		} else if (itemDays > 60 || dateLastPurchased > 60) {
+		} else if (itemDaysSinceLastPurchased >= 60) {
 			return 'I';
 		}
 	};
