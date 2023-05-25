@@ -124,5 +124,5 @@ ul {
 }
 
 .legendIcon {
-	@apply text-center mr-2 rounded-md h-11 w-12 bg-blue-400 text-white;
+	@apply text-center mr-2 rounded-md h-11 w-12 bg-blue-600 text-white;
 }
