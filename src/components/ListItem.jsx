@@ -50,13 +50,17 @@ export function ListItem({ item, listId }) {
 			new Date(),
 		);
 
-		if (itemDays <= 7) {
+		if (
+			itemDays <= 7 ||
+			(transformToJSDate(item.dateNextPurchased) < new Date() &&
+				itemDaysSinceLastPurchased < 60)
+		) {
 			return 'S';
 		} else if (itemDays > 7 && itemDays < 30) {
 			return 'KS';
 		} else if (itemDays >= 30 && itemDays < 60) {
 			return 'NS';
-		} else if (itemDaysSinceLastPurchased >= 60) {
+		} else {
 			return 'I';
 		}
 	};
