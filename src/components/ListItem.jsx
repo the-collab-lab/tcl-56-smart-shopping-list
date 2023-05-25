@@ -40,7 +40,9 @@ export function ListItem({ item, listId }) {
 			transformToJSDate(item.dateNextPurchased),
 			new Date(),
 		);
-		const dateLastPurchased = item.dateLastPurchased;
+		const dateLastPurchased = item.dateLastPurchased
+			? item.dateLastPurchased
+			: item.dateCreated;
 
 		if (itemDays <= 7) {
 			return 'S';
@@ -48,7 +50,7 @@ export function ListItem({ item, listId }) {
 			return 'KS';
 		} else if (itemDays >= 30 && itemDays < 60) {
 			return 'NS';
-		} else if (itemDays > 60 && !dateLastPurchased) {
+		} else if (itemDays > 60 || dateLastPurchased > 60) {
 			return 'I';
 		}
 	};
