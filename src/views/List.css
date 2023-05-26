@@ -9,14 +9,16 @@
 }
 
 .chippy-suggestion {
-	text-shadow: 1px 1px gray;
+	/* text-shadow: 1px 1px gray; */
 	font-size: 1.5rem;
 	line-height: 24px;
-	background: #2b90ca;
+	/* background: #247aab; */
+	background: #92c5fd;
 	border-radius: 40px;
 	padding: 5%;
 	text-align: left;
-	color: #fff;
+	/* color: #fff; */
+	color: #1d3faf;
 	bottom: 300px;
 	right: 15%;
 }
