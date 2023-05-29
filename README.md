@@ -176,6 +176,12 @@ Don't forget to give the project a star! Thanks again!
 - Drake Nguyen - [@draknguyen4000](https://github.com/drakenguyen4000)
 - Yire Morlans - [@yiremorlans](https://github.com/yiremorlans)
 
+### Special thanks to our mentors @[Collab Lab](https://the-collab-lab.codes/)
+
+- Aditya Dalal 
+- Nicole Schnurr 
+- Michaela Rochon
+
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
