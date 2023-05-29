@@ -106,10 +106,21 @@ After you’ve cloned the project locally and updated the dependencies, run the 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
- - Create a new list or join an existing list
- - Add items to your shopping list
- - Shop for your items and update them purchased by clicking the square input box
- - Delete items that are no longer in your rotation or have become inactive(over 60 days since last purchased)
+ - Create a new list or join an existing list.
+    - You can find the name of your list in Chippy's dialog box. Share your list with anyone! 
+ - Add items to your shopping list based on how frequent you typically purchase these items.
+ - See a label (Soon, Kinda Soon, Not Soon, Inactive) for each item.
+    - Soon: 7 days or fewer until the next purchase
+    - Kinda Soon: between 7 & 30 days until the next purchase
+    - Not Soon: 30 days or more until the next purchase
+    - Inactive: 60 days have passed since the last purchase
+ - Label is assigned based on the smart shopping algorithm prediction of when the item will need to be purchased again. This is calculcated based on three factors:
+      -  total purchases
+      -  date last purchased
+      -  date next purchase prediction
+ - Shop for your items and mark them as purchased by clicking the square input box.
+ - Filter through your list of items using the search bar.
+ - Delete items that are no longer in your rotation or have become inactive(over 60 days since last purchased).
 
 
 
