@@ -1,16 +1,18 @@
 import { useState } from 'react';
-// import { generateToken } from '@the-collab-lab/shopping-list-utils';
+import { ArchivalNoticeModal } from '@the-collab-lab/shopping-list-utils';
 import './Home.css';
 import { Chippy } from './Chippy';
 
-export function Home({ makeNewList, joinList, handleError, joinListErrorMsg }) {
+export function Home({ joinList, handleError, joinListErrorMsg }) {
 	const [inputValue, setInputValue] = useState('');
 	const [listName, setListName] = useState('');
 
 	const handleClick = (event) => {
 		event.preventDefault();
-		const newToken = listName.trim().toLowerCase();
-		makeNewList(newToken);
+		// Note that creating lists is disabled for this project
+		// const newToken = listName.trim().toLowerCase();
+		// makeNewList(newToken);
+		console.log('Creating new list is disabled for this project');
 	};
 	/**
 	 * Function handles taking the form input and passing it through joinList callback function after it is validated and sanitized
@@ -78,6 +80,7 @@ export function Home({ makeNewList, joinList, handleError, joinListErrorMsg }) {
 					</button>
 				</form>
 			</div>
+			<ArchivalNoticeModal />
 		</div>
 	);
 }
